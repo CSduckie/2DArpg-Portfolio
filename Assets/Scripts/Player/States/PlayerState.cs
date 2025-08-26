@@ -1,0 +1,20 @@
+public enum PlayerState
+{
+    Idle,
+    Move,
+    Jump,
+    DoubleJump,
+    Fall,
+    StandAttack,
+    HealSkill,
+    Dash,
+    Hurt,
+    Stun,
+    Die,
+    Defend,
+    PerfectDefend,
+    DefendSuccessful,
+    WallJump,
+    WallSlide,
+    SlashSkill,
+}
