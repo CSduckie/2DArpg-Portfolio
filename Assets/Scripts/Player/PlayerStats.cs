@@ -8,8 +8,6 @@ public class PlayerStats : CharacterStats
     
     private PlayerController player;
     
-    
-    
     [SerializeField] private float coolingRecoverSpeed;
     private float currentCooling;
     private float currentHealSkillAmount;

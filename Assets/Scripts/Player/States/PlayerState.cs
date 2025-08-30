@@ -17,4 +17,5 @@ public enum PlayerState
     WallJump,
     WallSlide,
     SlashSkill,
+    UltSkill,
 }

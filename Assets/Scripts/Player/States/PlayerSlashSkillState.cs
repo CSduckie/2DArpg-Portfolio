@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerSlashSkillState : PlayerStateBase
 {
+    //计时器，用于计算角色三蓄时间
     private float currentChargeTimer;
     private enum SlashSkillChildState
     {

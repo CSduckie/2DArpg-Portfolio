@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 
 public class PlayerController : MonoBehaviour, IStateMachineOwner
 {
@@ -19,12 +19,14 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     private CameraFollow cameraFollow;
     [SerializeField] private GameObject cameraFollowPoint;
     
+    [Header("摄像机震动")]
+    public CinemachineImpulseSource impulseSource;
     [Header("状态标记")]
-    public bool isHurt;
-    public bool isDead;
-    public bool isStun;
-    public bool canInput;
-    public bool CanSwitch;
+    [HideInInspector] public bool isHurt;
+    [HideInInspector] public bool isDead;
+    [HideInInspector] public bool isStun;
+    [HideInInspector] public bool canInput;
+    [HideInInspector] public bool CanSwitch;
     
     [HideInInspector]
     public bool isDefending;
@@ -68,13 +70,22 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     
     [Header("攻击配置文件")]
     public SkillConfig[] standAttackConfig;
+    
     [Header("治疗技能配置文件")] 
     public SkillConfig healSkillConfig;
+
+    [Header("大招配置文件")] 
+    public SkillConfig ultSkillConfig;
+    public int slashCount = 8;
+    public float interval = 0.12f; // 两次生成之间的间隔（秒）
+    
     [Header("攻击判定框")] 
     public GameObject[] attackBoxes;
+    
     [Header("斩击技能配置文件")] 
     public SkillConfig slashSkillConfig;
     public float slashChargeTime;
+    
     //当前的充能段数
     [HideInInspector]
     public int currentChargeStage;
@@ -87,6 +98,7 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
         stateMachine.Init(this);
         ChangeState(PlayerState.Idle);
         cameraFollow = cameraFollowPoint.GetComponent<CameraFollow>();
+        impulseSource = FindFirstObjectByType<CinemachineImpulseSource>();
     }
 
     //状态机
@@ -143,6 +155,9 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
                 break;
             case PlayerState.SlashSkill:
                 stateMachine.ChangeState<PlayerSlashSkillState>();
+                break;
+            case PlayerState.UltSkill:
+                stateMachine.ChangeState<PlayerUltimateSkillState>();
                 break;
         }
     }
@@ -352,5 +367,64 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
         canPerfectDefend = false;
     }
     
+    #endregion
+
+    #region 大招逻辑
+
+    //大招
+    public void UseUlt()
+    {
+        //根据段数，生成刃，然后刃上挂一个playerweapon,一段一个伤害
+        StartCoroutine(UseUltSkill());
+    }
+
+    private IEnumerator UseUltSkill()
+    {
+        for (int i = 0; i < slashCount; i++)
+        {
+            float randomZ = UnityEngine.Random.Range(0f, 360f);
+            Quaternion rot = Quaternion.Euler(0f, 0f, randomZ);
+            // 1. 计算屏幕中心的像素坐标
+            Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+            // 2. 转换为世界坐标
+            Vector3 worldCenter = Camera.main.ScreenToWorldPoint(screenCenter);
+            // 注意：2D 场景里通常要把 z 改成 0（避免相机 near/far clipping 影响）
+            worldCenter.z = 0f;
+            // 生成一次斩击（这里用你之前的单例 VFXManager 的 SpawnVFX）
+            if (VFXManager.Instance != null)
+            {
+                VFXManager.Instance.SpawnVFX(ultSkillConfig.releaseData.SpawnObj.prefab, worldCenter, rot.eulerAngles, 1.2f);
+                impulseSource.GenerateImpulse(ultSkillConfig.releaseData.attackData.ScreenImpulseValue);
+                
+                //造成伤害
+                Vector3 bottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
+                Vector3 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f));
+
+                Collider2D[] hits = Physics2D.OverlapAreaAll(bottomLeft, topRight);
+                
+                List<GameObject> targets = new List<GameObject>();
+                foreach (var hit in hits)
+                {
+                    if(hit.CompareTag("Enemy"))
+                        targets.Add(hit.gameObject);
+                }
+
+                foreach (var target in targets)
+                {
+                    CharacterStats _attackerStats = GetComponentInParent<CharacterStats>();
+                    int attackDir = isFacingRight?1:-1;
+                    
+                    //TODO:后续需要添加damage的修改值
+                    target.GetComponent<CharacterStats>().TakeDamage(ultSkillConfig.releaseData.attackData.hitData.value ,
+                        ultSkillConfig.releaseData.attackData.hitData.stunValue, 
+                        attackDir,ultSkillConfig.releaseData.attackData.hitData.RepelVelocity,_attackerStats);
+                }
+            }
+            // 等待 interval 秒后再继续下一次
+            yield return new WaitForSeconds(interval);
+        }
+    }
+    
+
     #endregion
 }

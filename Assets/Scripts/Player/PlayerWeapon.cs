@@ -5,7 +5,6 @@ using Unity.Cinemachine;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private SkillConfig skillConfig;
-    public CinemachineImpulseSource impulseSource;
     private PlayerController player;
 
     private float weaponDamage;
@@ -16,7 +15,7 @@ public class PlayerWeapon : MonoBehaviour
     private Coroutine currentCoroutine;
     private void Start()
     {
-        player = GetComponentInParent<PlayerController>();
+        player = GameManager.instance.player;
         weaponDamage = skillConfig.releaseData.attackData.hitData.value;
         repelDir = skillConfig.releaseData.attackData.hitData.RepelVelocity;
         stunValue = skillConfig.releaseData.attackData.hitData.stunValue;
@@ -31,19 +30,26 @@ public class PlayerWeapon : MonoBehaviour
             if(other.GetComponent<EnemyController>().isDead)
                 return;
             
-            //启用打击感效果
-            StartFreezeFrame(freezeTime);
-            StartCameraShake(impulseValue);
+            HitEnemy(other.gameObject);
             
-            CharacterStats _attackerStats = GetComponentInParent<CharacterStats>();
-            
-            int attackDir = player.isFacingRight?1:-1;
-            
-            //TODO:后续需要添加damage的修改值
-            other.GetComponent<CharacterStats>().TakeDamage(weaponDamage ,stunValue, attackDir,repelDir,_attackerStats);
         }
     }
 
+    public void HitEnemy(GameObject enemy)
+    {
+        //启用打击感效果
+        StartFreezeFrame(freezeTime);
+        //摄像机震动,由自身进行调用的效果
+        player.impulseSource.GenerateImpulse(impulseValue);
+            
+        CharacterStats _attackerStats = GetComponentInParent<CharacterStats>();
+            
+        int attackDir = player.isFacingRight?1:-1;
+            
+        //TODO:后续需要添加damage的修改值
+        enemy.GetComponent<CharacterStats>().TakeDamage(weaponDamage ,stunValue, attackDir,repelDir,_attackerStats);
+    }
+    
     #region 打击感配置
     //停止当前所有携程
     public void StopAllCoro()
@@ -71,12 +77,7 @@ public class PlayerWeapon : MonoBehaviour
         player.sprite.anim.speed = 1;
         currentCoroutine = null;
     }
-    
-    //摄像机震动
-    private void StartCameraShake(float _impulseVal)
-    {
-        impulseSource.GenerateImpulse(_impulseVal);
-    }
+
     
     #endregion
 }

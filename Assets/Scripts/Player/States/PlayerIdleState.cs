@@ -53,6 +53,12 @@ public class PlayerIdleState : PlayerStateBase
             player.ChangeState(PlayerState.SlashSkill);
             return;
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            player.ChangeState(PlayerState.UltSkill);
+            return;
+        }
         
         player.UpdateVelocity(false);
     }
