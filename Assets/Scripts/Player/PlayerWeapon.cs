@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
-using Unity.Cinemachine;
+using System.Collections.Generic;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private SkillConfig skillConfig;
@@ -10,6 +10,7 @@ public class PlayerWeapon : MonoBehaviour
     private float weaponDamage;
     private float stunValue;
     private Vector2 repelDir;
+    private List<GameObject> hitVFX =  new List<GameObject>();
     private float freezeTime;
     private float impulseValue;
     private Coroutine currentCoroutine;
@@ -20,6 +21,11 @@ public class PlayerWeapon : MonoBehaviour
         repelDir = skillConfig.releaseData.attackData.hitData.RepelVelocity;
         stunValue = skillConfig.releaseData.attackData.hitData.stunValue;
         freezeTime = skillConfig.releaseData.attackData.FreezeFrameTime;
+        foreach (var vfx in skillConfig.releaseData.attackData.hitData.SpawnObj)
+        {
+            GameObject vfxObject = vfx.prefab;
+            hitVFX.Add(vfxObject); 
+        }
         impulseValue = skillConfig.releaseData.attackData.ScreenImpulseValue;
     }
 
@@ -41,7 +47,17 @@ public class PlayerWeapon : MonoBehaviour
         StartFreezeFrame(freezeTime);
         //摄像机震动,由自身进行调用的效果
         player.impulseSource.GenerateImpulse(impulseValue);
-            
+        
+        //生成一个轻微的随机角度
+        float randomZ = UnityEngine.Random.Range(-20f, 20f);
+        Quaternion rot = Quaternion.Euler(0f, 0f, randomZ);
+        
+        //通知特效器生成所有特效
+        foreach (var vfx in hitVFX)
+        {
+            VFXManager.Instance.SpawnVFX(vfx,enemy.transform.position,rot.eulerAngles,1.2f);
+        }
+        
         CharacterStats _attackerStats = GetComponentInParent<CharacterStats>();
             
         int attackDir = player.isFacingRight?1:-1;

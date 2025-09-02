@@ -8,7 +8,6 @@ public class SkillConfig : ScriptableObject
     public string AnimationName;
     public string EndAnimationName;
     public Skill_ReleaseData releaseData;
-    public Skill_AttackData[] attackData;
 }
 
 /// <summary>
@@ -55,8 +54,6 @@ public class Skill_SpawnObj
 [Serializable]
 public class Skill_AttackData
 {
-    //
-    public Skill_SpawnObj SpawnObj;
     public AudioClip audioClip;
 
     //TODO:命中数据::
@@ -80,7 +77,7 @@ public class Skill_HitData
     //伤害数值
     //用于回复技能时，则是用作回复数值
     public float value;
-
+    public Skill_SpawnObj[] SpawnObj;
     public float energyCost;
     //积累的失衡能量值
     public float stunValue;

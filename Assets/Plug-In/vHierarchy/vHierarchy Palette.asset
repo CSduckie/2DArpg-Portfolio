@@ -94,6 +94,7 @@ MonoBehaviour:
     - SceneViewRGB
     - RawImage Icon
     - Shader Icon
+    - Transform Icon
     enabled: 1
   - builtinIcons: []
     customIcons: []

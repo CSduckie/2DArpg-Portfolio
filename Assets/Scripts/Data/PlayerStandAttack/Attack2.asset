@@ -25,22 +25,27 @@ MonoBehaviour:
     audioClip: {fileID: 0}
     canRotate: 0
     attackData:
-      SpawnObj:
-        prefab: {fileID: 0}
-        audioClip: {fileID: 0}
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0}
-        Scale: {x: 1, y: 1, z: 1}
-        Time: 0
       audioClip: {fileID: 0}
       hitData:
         value: 10
+        SpawnObj:
+        - prefab: {fileID: 4402595269323911396, guid: b3d003e9375f3ba49be72206ae2634f5, type: 3}
+          audioClip: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          rotation: {x: 0, y: 0, z: 0}
+          Scale: {x: 1, y: 1, z: 1}
+          Time: 0
+        - prefab: {fileID: 2143341799977677925, guid: f4972420c82c7ce4c986e61b24439353, type: 3}
+          audioClip: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          rotation: {x: 0, y: 0, z: 0}
+          Scale: {x: 1, y: 1, z: 1}
+          Time: 0
         energyCost: 0
         stunValue: 0
         HardTime: 0
-        RepelVelocity: {x: 2, y: 5}
+        RepelVelocity: {x: 1, y: 2}
         RepelTime: 0
       ScreenImpulseValue: 0.1
-      FreezeFrameTime: 0.1
+      FreezeFrameTime: 0
       FreezeGameTime: 0
-  attackData: []

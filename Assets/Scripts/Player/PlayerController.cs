@@ -1,14 +1,14 @@
-using System;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Cinemachine;
+using VHierarchy.Libs;
 
 public class PlayerController : MonoBehaviour, IStateMachineOwner
 {
     //TODO:需要修改
     public float stunTime = 10;
-
     public PlayerStats playerStats { get; private set; }
     public PlayerSprite sprite;
     private StateMachine stateMachine;
@@ -78,7 +78,8 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     public SkillConfig ultSkillConfig;
     public int slashCount = 8;
     public float interval = 0.12f; // 两次生成之间的间隔（秒）
-    
+    public Image ultCullingImage;
+    public float fadeDuration = 0.1f;
     [Header("攻击判定框")] 
     public GameObject[] attackBoxes;
     
@@ -374,12 +375,14 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     //大招
     public void UseUlt()
     {
+        FadeIn();
         //根据段数，生成刃，然后刃上挂一个playerweapon,一段一个伤害
         StartCoroutine(UseUltSkill());
     }
 
     private IEnumerator UseUltSkill()
     {
+        //遮罩已经在进入大招状态时启用
         for (int i = 0; i < slashCount; i++)
         {
             float randomZ = UnityEngine.Random.Range(0f, 360f);
@@ -390,10 +393,24 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
             Vector3 worldCenter = Camera.main.ScreenToWorldPoint(screenCenter);
             // 注意：2D 场景里通常要把 z 改成 0（避免相机 near/far clipping 影响）
             worldCenter.z = 0f;
-            // 生成一次斩击（这里用你之前的单例 VFXManager 的 SpawnVFX）
+            
+            
+            // 生成一次斩击（这里用之前的单例 VFXManager 的 SpawnVFX）
             if (VFXManager.Instance != null)
             {
+                //生成基础切击特效
                 VFXManager.Instance.SpawnVFX(ultSkillConfig.releaseData.SpawnObj.prefab, worldCenter, rot.eulerAngles, 1.2f);
+                var index = UnityEngine.Random.Range(0, ultSkillConfig.releaseData.attackData.hitData.SpawnObj.Length);
+                
+                //生成附加斩击特效
+                //随机一个slash角度
+                float randomAxisX = UnityEngine.Random.Range(-180f, 180f);
+                float randomAxisY = UnityEngine.Random.Range(-180f, 180f);
+                float randomAxisZ = UnityEngine.Random.Range(-180f, 180f);
+                Quaternion rotation = Quaternion.Euler(randomAxisX, randomAxisY, randomAxisZ);
+
+                VFXManager.Instance.SpawnVFX(ultSkillConfig.releaseData.attackData.hitData.SpawnObj[index].prefab, worldCenter, rotation.eulerAngles, 1.2f);
+
                 impulseSource.GenerateImpulse(ultSkillConfig.releaseData.attackData.ScreenImpulseValue);
                 
                 //造成伤害
@@ -423,8 +440,43 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
             // 等待 interval 秒后再继续下一次
             yield return new WaitForSeconds(interval);
         }
+
+        FadeOut();
     }
     
+    //大招屏幕遮罩效果
+    public void FadeIn()  // 遮罩出现（alpha → 1）
+    {
+        StartCoroutine(FadeTo(0.8f));
+    }
 
+    public void FadeOut() // 遮罩消失（alpha → 0）
+    {
+        StartCoroutine(FadeTo(0f));
+    }
+
+    private System.Collections.IEnumerator FadeTo(float targetAlpha)
+    {
+        float startAlpha = ultCullingImage.color.a;
+        float time = 0f;
+
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            float t = time / fadeDuration;
+            float newAlpha = Mathf.Lerp(startAlpha, targetAlpha, t);
+
+            var c = ultCullingImage.color;
+            c.a = newAlpha;
+            ultCullingImage.color = c;
+
+            yield return null;
+        }
+
+        // 保证最终精确值
+        var finalC = ultCullingImage.color;
+        finalC.a = targetAlpha;
+        ultCullingImage.color = finalC;
+    }
     #endregion
 }
