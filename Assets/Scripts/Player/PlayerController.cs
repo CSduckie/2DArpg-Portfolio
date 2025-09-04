@@ -87,6 +87,12 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     public SkillConfig slashSkillConfig;
     public float slashChargeTime;
     
+    [Header("ShadowCut技能配置文件")]
+    public SkillConfig shadowCutSkillConfig;
+    public float shadowPrefabLiveTime;
+    public float shadowPrefabSpeed;
+    public float shadowCutPrefabMoveRange;
+   
     //当前的充能段数
     [HideInInspector]
     public int currentChargeStage;
@@ -156,6 +162,9 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
                 break;
             case PlayerState.SlashSkill:
                 stateMachine.ChangeState<PlayerSlashSkillState>();
+                break;
+            case PlayerState.ShadowCutSkill:
+                stateMachine.ChangeState<PlayerShadowCutState>();
                 break;
             case PlayerState.UltSkill:
                 stateMachine.ChangeState<PlayerUltimateSkillState>();
@@ -478,5 +487,16 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
         finalC.a = targetAlpha;
         ultCullingImage.color = finalC;
     }
+    #endregion
+    
+    #region ShadowCutSkill
+
+    public void UseShadowCutSkill()
+    {
+        //逻辑为：生成shadowcut预制体
+        GameObject newPrefab = Instantiate(shadowCutSkillConfig.releaseData.SpawnObj.prefab,transform.position,transform.rotation);
+        newPrefab.GetComponent<ShadowCutController>().Init(shadowPrefabSpeed,shadowPrefabLiveTime,isFacingRight?1:-1,shadowCutPrefabMoveRange);
+    }
+    
     #endregion
 }

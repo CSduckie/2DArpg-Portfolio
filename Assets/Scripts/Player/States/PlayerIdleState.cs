@@ -60,6 +60,14 @@ public class PlayerIdleState : PlayerStateBase
             return;
         }
         
+        //TODO:需要修改跟能量绑定
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            player.ChangeState(PlayerState.ShadowCutSkill);
+            return;
+        }
+        
+        
         player.UpdateVelocity(false);
     }
 

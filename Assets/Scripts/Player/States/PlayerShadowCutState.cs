@@ -18,13 +18,16 @@ public class PlayerShadowCutState : PlayerStateBase
             switch(shadowCutChildState)
             {
                 case ShadowCutChildState.ToCharge:
-                    player.PlayAnimation("",0f);
+                    player.PlayAnimation("ToShadowCut",0f);
                     break;
                 case ShadowCutChildState.Charging:
-                    player.PlayAnimation("",0f);
+                    player.PlayAnimation("ShadowCutCharging",0f);
                     break;
                 case ShadowCutChildState.Casting:
-                    player.PlayAnimation("",0f);
+					//执行一次使用逻辑
+                    player.UseShadowCutSkill();
+                    player.playerStats.UseSkill(player.shadowCutSkillConfig.releaseData.attackData.hitData.energyCost);
+                    shadowCutchildState = ShadowCutChildState.Charging;
                     break;
             }
         }
@@ -51,6 +54,10 @@ public class PlayerShadowCutState : PlayerStateBase
                 break;
         }
 
+        if (!player.checkCanUseSkill(player.shadowCutSkillConfig))
+        {
+            player.ChangeState(PlayerState.Idle);
+        }
     }
     
     public override void Exit()
@@ -65,13 +72,34 @@ public class PlayerShadowCutState : PlayerStateBase
 
     private void ToChargeOnUpdate()
     {
-        
+        if (CheckAnimatorStateName("ToShadowCut", out float animationTime))
+        {
+            if (animationTime >= 0.9f)
+            {
+                shadowCutchildState = ShadowCutChildState.Charging;
+            }
+        }
+        //检测，如果没有按下按键就转换为idle
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            player.ChangeState(PlayerState.Idle);
+        }
     }
 
     private void ChargeOnUpdate()
     {
-        
-        
+		if (CheckAnimatorStateName("ShadowCutCharging", out float animationTime))
+        {
+            if (animationTime >= 0.9f)
+            {
+                shadowCutchildState = ShadowCutChildState.Casting;
+            }
+        }
+        //检测，如果没有按下按键就转换为idle
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            player.ChangeState(PlayerState.Idle);
+        }
     }
 
     private void CastOnUpdate()

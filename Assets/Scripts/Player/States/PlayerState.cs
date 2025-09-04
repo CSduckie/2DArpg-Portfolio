@@ -18,4 +18,5 @@ public enum PlayerState
     WallSlide,
     SlashSkill,
     UltSkill,
+    ShadowCutSkill
 }
