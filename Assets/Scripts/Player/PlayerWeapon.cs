@@ -51,6 +51,12 @@ public class PlayerWeapon : MonoBehaviour
         //生成一个轻微的随机角度
         float randomZ = UnityEngine.Random.Range(-20f, 20f);
         Quaternion rot = Quaternion.Euler(0f, 0f, randomZ);
+        int attackDir = player.isFacingRight?1:-1;
+        if(attackDir == 1)
+            rot =  Quaternion.Euler(0f, 180f, randomZ);
+        else
+            rot =  Quaternion.Euler(0f, 0f, randomZ);
+
         
         //通知特效器生成所有特效
         foreach (var vfx in hitVFX)
@@ -60,7 +66,6 @@ public class PlayerWeapon : MonoBehaviour
         
         CharacterStats _attackerStats = GetComponentInParent<CharacterStats>();
             
-        int attackDir = player.isFacingRight?1:-1;
             
         //TODO:后续需要添加damage的修改值
         enemy.GetComponent<CharacterStats>().TakeDamage(weaponDamage ,stunValue, attackDir,repelDir,_attackerStats);

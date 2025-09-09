@@ -27,7 +27,7 @@ MonoBehaviour:
     attackData:
       audioClip: {fileID: 0}
       hitData:
-        value: 0
+        value: 5
         SpawnObj:
         - prefab: {fileID: 8284348614846921022, guid: 7db4ec41b2d147642af9eab9ea02a087, type: 3}
           audioClip: {fileID: 0}
