@@ -7,4 +7,5 @@ public enum ShielderState
     RangeAttack,
     Hurt,
     Walk,
+    Idle,
 }

@@ -39777,7 +39777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5398385211272430820, guid: 750a1cf9b0bf02744b55812a9ba8d3d4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7885975363387505840, guid: 750a1cf9b0bf02744b55812a9ba8d3d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -43276,7 +43276,7 @@ Transform:
   m_GameObject: {fileID: 1083290830}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.38, y: -0.51, z: 0}
+  m_LocalPosition: {x: -4, y: -0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44528,7 +44528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1163044867
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52802,7 +52802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5398385211272430820, guid: 750a1cf9b0bf02744b55812a9ba8d3d4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7885975363387505840, guid: 750a1cf9b0bf02744b55812a9ba8d3d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58035,7 +58035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6018033806830725421, guid: 900a217064dc68d4c9d53e82930c2206, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6354291815561119252, guid: 900a217064dc68d4c9d53e82930c2206, type: 3}
       propertyPath: arena
