@@ -8,4 +8,8 @@ public enum ShielderState
     Hurt,
     Walk,
     Idle,
+    MultiCloseAttack,
+    BullDash,
+    Stun,
+    Sleep,
 }

@@ -23,7 +23,6 @@ public class ArcherController : EnemyController
     [Header("传送")]
     public bool canTeleport { get; private set; }
     
-    
     [Header("普通攻击")] 
     public bool canNormalAttack{ get; private set; }
     

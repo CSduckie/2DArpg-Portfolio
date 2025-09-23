@@ -27,7 +27,7 @@ MonoBehaviour:
     attackData:
       audioClip: {fileID: 0}
       hitData:
-        value: 0
+        value: 20
         SpawnObj: []
         energyCost: 1
         stunValue: 0

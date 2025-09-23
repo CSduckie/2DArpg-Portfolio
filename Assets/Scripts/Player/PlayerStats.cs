@@ -128,6 +128,51 @@ public class PlayerStats : CharacterStats
         }
     }
 
+    public void TakeDamagebyTraps(float _damage, float _stunValue, int attackDir, Vector2 repelDir)
+    {
+        currentHealth -= _damage;
+        //先判定是否处于一个正在Stun的状态，如果是，那么清空Stun条并且造成额外伤害
+        if (!player.isStun)
+            currentCooling += _stunValue;
+        else
+        {
+            currentCooling = 0;
+            currentHealth -= 50*_damage;
+        }
+        
+        player.rb.linearVelocity =new Vector2(repelDir.x * attackDir,repelDir.y);
+        
+        if(currentCooling >= maxExoCooling.GetValue())
+            player.GetStun();
+        else
+            player.GetHurt();
+        
+        
+        if (currentHealth <= 0 && !isDead)
+            OnDie();
+        
+        //Health UI Update
+        onHealthChanged?.Invoke();
+        //cooling UI Update
+        onCoolingChanged?.Invoke();
+        
+        //被攻击时看向敌人位置
+        if (player.isFacingRight)
+        {
+            if (attackDir == 1)
+            {
+                player.Flip();
+            }
+        }
+        else
+        {
+            if (attackDir == -1)
+            {
+                player.Flip();
+            }
+        }
+    }
+    
     
     //在状态机中调用的治疗技能函数
     public void Heal()

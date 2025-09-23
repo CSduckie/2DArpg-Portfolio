@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Collections;
 using Unity.Cinemachine;
 using System.Linq;
-using System.Collections;
 public class CameraAnimation : MonoBehaviour
 {
     public CinemachineCamera vcam;

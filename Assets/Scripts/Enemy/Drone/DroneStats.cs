@@ -12,7 +12,7 @@ public class DroneStats : CharacterStats
     public override void TakeDamage(float _damage,float _stunValue, int attackDir,Vector2 repelDir,CharacterStats _attackerStats)
     {
         //设置击退由于无人机没有重力效果，因此需要适当微调击退力度
-        drone.rb.linearVelocity = new Vector2(repelDir.x/2 * attackDir,repelDir.y/2);
+        drone.rb.linearVelocity = new Vector2(repelDir.x/2 * attackDir,0);
         
         currentHealth -= _damage;
         //Health UI Update

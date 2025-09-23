@@ -438,7 +438,7 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
                 foreach (var target in targets)
                 {
                     CharacterStats _attackerStats = GetComponentInParent<CharacterStats>();
-                    int attackDir = isFacingRight?1:-1;
+                    int attackDir = target.transform.position.x - transform.position.x >= 0? 1 : -1;
                     
                     //TODO:后续需要添加damage的修改值
                     target.GetComponent<CharacterStats>().TakeDamage(ultSkillConfig.releaseData.attackData.hitData.value ,

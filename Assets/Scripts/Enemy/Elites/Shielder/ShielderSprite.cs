@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class ShielderSprite : EnemySprite
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private ShielderController shielderController;
+
+    protected void Awake()
     {
-        
+        shielderController = enemy as ShielderController;
+    }
+    
+    
+    //动画事件
+    public void EnableAttackBox(int _index)
+    {
+        shielderController.shielderWeapons[_index].SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DisableAttackBox(int _index)
     {
-        
+        shielderController.shielderWeapons[_index].SetActive(false);
     }
 }
