@@ -12,14 +12,11 @@ public class TurretController : EnemyController
     public TurretLaserController laserController;
 
     [Header("攻击锁定相关参数以及射速")] 
-    public float lostTargetTime = 3f;
     public float attackDuration;
     
-    public bool canAttack { get; private set; } = false;
 
-    [Header("子弹和枪口")] 
-    public Transform muzzleTrans;
-    public GameObject bulletPrefab;
+    [Header("子弹")] 
+    public EnemyWeapon bullet;
     
     protected override void Start()
     {
@@ -37,17 +34,14 @@ public class TurretController : EnemyController
             case TurretState.Idle:
                 stateMachine.ChangeState<TurretIdleState>();
                 break;
-            case TurretState.Active:
-                stateMachine.ChangeState<TurretActiveState>();
+            case TurretState.Seer:
+                stateMachine.ChangeState<TurretSeerState>();
                 break;
             case TurretState.Battle:
                 stateMachine.ChangeState<TurretBattleState>();
                 break;
-            case TurretState.Shoot:
-                stateMachine.ChangeState<TurretShootState>();
-                break;
-            case TurretState.Close:
-                stateMachine.ChangeState<TurretCloseState>();
+            case TurretState.Hurt:
+                stateMachine.ChangeState<TurretHurtState>();
                 break;
             case TurretState.Die:
                 stateMachine.ChangeState<TurretDieState>();
@@ -84,42 +78,23 @@ public class TurretController : EnemyController
     }
 
     
-    #region 攻击冷却携程
-    //开始启用攻击冷却
-    public void StartAttackCool()
-    {
-        StartCoroutine(AttackCooling());
-    }
-    private IEnumerator AttackCooling()
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(attackDuration); 
-        canAttack = true;
-    }
-    #endregion
     
-    //生成子弹
-    public void ShootBullet()
-    {
-        var bullet = Instantiate(bulletPrefab);
-        bullet.transform.position = muzzleTrans.position;
-        EnemyBullet bulletScript = bullet.GetComponent<EnemyBullet>();
-        var dir = transform.localScale.x > 0 ? 1 : -1;
-        bulletScript.InitBullet(dir);
-    }
-
 
     #region 炮台的受伤和死亡
     public void GetHurt()
     {
-        //此处滞空是因为机枪我不希望有受伤动画
+        if(isDead)
+            return;
+        ChangeState(TurretState.Hurt);
+        return;
     }
     
     public void Die()
     {
-        ChangeState(TurretState.Die);
         isDead = true;
+        ChangeState(TurretState.Die);
         enemyUI.SetActive(false);
+        laserController.gameObject.SetActive(false);
     }
     #endregion
     

@@ -3,21 +3,25 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance { get; private set; }
-
+    
+    [SerializeField] private Animator sceneTransitionAnimator;
+    
     private void Awake()
     {
-        // 单例初始化逻辑
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // 场景切换时保留该对象
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(gameObject); // 如果已经存在一个实例，销毁多余的
-        }
+
+        Instance = this;
     }
 
+    private void Start()
+    {
+        sceneTransitionAnimator = GetComponentInChildren<Animator>();
+    }
+    
     // 同步加载场景
     public void LoadScene(string sceneName)
     {
@@ -32,12 +36,18 @@ public class SceneLoader : MonoBehaviour
 
     private System.Collections.IEnumerator LoadSceneAsyncCoroutine(string sceneName)
     {
+        sceneTransitionAnimator.SetTrigger("End");
+        yield return new WaitForSeconds(1);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        
+        
         while (!asyncLoad.isDone)
         {
             Debug.Log("加载进度：" + asyncLoad.progress);
             yield return null;
         }
+        
+        sceneTransitionAnimator.SetTrigger("Start");
     }
 
     // 重新加载当前场景
@@ -47,13 +57,13 @@ public class SceneLoader : MonoBehaviour
         LoadScene(currentScene.name);
     }
 
-    // 返回主菜单（根据你的主菜单场景名修改）
+    // 返回主菜
     public void ReturnToMainMenu()
     {
         LoadScene("MainMenu");
     }
 
-    // 退出游戏（打包后有效）
+    // 退出游戏
     public void QuitGame()
     {
         Debug.Log("退出游戏");

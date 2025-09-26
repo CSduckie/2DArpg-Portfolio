@@ -61,16 +61,16 @@ public class PlayerStats : CharacterStats
         //判定一个前置条件：玩家是否处于防御姿态，如果处于防御姿态，则判定攻击是否可以阻挡
         if (player.isDefending && (player.isFacingRight?1:-1) != attackDir)
         {
-            //检查是否完美格挡
-            if (player.canPerfectDefend)
-            {
-                //通知玩家进入完美格挡状态
-                player.TriggerPerfectDefend();
-                //同时回传给攻击者脚本，要求其触发被弹反逻辑
-                _attackerStats.GetPerfectDefend(-attackDir,repelDir);
-            }
-            else
-            {
+             //检查是否完美格挡
+             if (player.canPerfectDefend)
+             {
+                 //通知玩家进入完美格挡状态
+                 player.TriggerPerfectDefend();
+                 //同时回传给攻击者脚本，要求其触发被弹反逻辑
+                 _attackerStats.GetPerfectDefend(-attackDir,repelDir);
+             }
+             else
+             {
                 //玩家没有在完美格挡，因此累计量条,进行击退，但是免疫伤害
                 currentCooling += _stunValue;
                 player.rb.linearVelocity =new Vector2(repelDir.x * attackDir,0);
@@ -79,8 +79,8 @@ public class PlayerStats : CharacterStats
                     player.GetStun();
                 else
                     player.TriggerNormalDefend();
-            }
-            return;
+             }
+             return;
         }
         
         
@@ -111,19 +111,20 @@ public class PlayerStats : CharacterStats
         //cooling UI Update
         onCoolingChanged?.Invoke();
         
+        Debug.Log("DIR:" + attackDir);
         //被攻击时看向敌人位置
         if (player.isFacingRight)
         {
             if (attackDir == 1)
             {
-                player.Flip();
+                player.FlipWithNoInput();
             }
         }
         else
         {
             if (attackDir == -1)
             {
-                player.Flip();
+                player.FlipWithNoInput();
             }
         }
     }

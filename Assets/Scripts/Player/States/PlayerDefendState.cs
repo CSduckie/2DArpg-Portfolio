@@ -68,6 +68,12 @@ public class PlayerDefendState : PlayerStateBase
                         DefenseChildState = ChildState.Idle;
                     }
                 }
+                //检测切换回Idle的条件
+                if (!Input.GetMouseButton(1))
+                {
+                    player.ChangeState(PlayerState.Idle);
+                    return;
+                }
                 break;
         }
         
@@ -84,6 +90,11 @@ public class PlayerDefendState : PlayerStateBase
     {
         if(DefenseChildState == ChildState.Idle)
         {
+            DefenseChildState = ChildState.Trigger;
+        }
+        else
+        {
+            DefenseChildState = ChildState.Idle;
             DefenseChildState = ChildState.Trigger;
         }
     }

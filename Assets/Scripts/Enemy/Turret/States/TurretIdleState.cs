@@ -10,7 +10,8 @@ public class TurretIdleState : TurretStateBase
     {
         if (turret.isPlayerFound())
         {
-            turret.ChangeState(TurretState.Active);
+            turret.ChangeState(TurretState.Seer);
+            Debug.Log("Found!");
             return;
         }
             

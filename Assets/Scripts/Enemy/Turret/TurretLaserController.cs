@@ -48,7 +48,8 @@ public class TurretLaserController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(laserStartPos,direction,turretController.checkDistance,turretController.whatIsPlayer);
         
         float length = turretController.checkDistance;
-
+        
+        
         if(hit)
         {
             length = Mathf.Abs(hit.point.x - laserStartPos.x);

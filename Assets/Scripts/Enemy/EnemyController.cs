@@ -29,6 +29,8 @@ public class EnemyController : MonoBehaviour,IStateMachineOwner
     {
         stateMachine = new StateMachine();
         stateMachine.Init(this);
+        rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponentInChildren<EnemySprite>();
     }
     
     public void PlayAnimation(string animationName,float fixedTransitionDuration = 0.25f)

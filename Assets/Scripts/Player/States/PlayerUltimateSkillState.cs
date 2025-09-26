@@ -38,6 +38,7 @@ public class PlayerUltimateSkillState : PlayerStateBase
         ultSkillchildState = UltSkillChildState.ToCharge;
         skillUsed = false;
         player.isUsingSkill = true;
+        player.rb.linearVelocity = Vector2.zero;
     }
     
     

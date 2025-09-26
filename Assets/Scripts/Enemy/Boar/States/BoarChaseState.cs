@@ -11,7 +11,7 @@ public class BoarChaseState : BoarStateBase
     
     public override void Update()
     {
-        boar.rb.linearVelocity = new Vector2(boar.chaseSpeed * (boar.isFacingRight? 1:-1), boar.rb.linearVelocityY);
+        
         //检查丢失仇恨
         if (!boar.isPlayerFound())
             lostTimer += Time.deltaTime;
@@ -29,7 +29,12 @@ public class BoarChaseState : BoarStateBase
             boar.Flip();
         }
     }
-    
+
+    public override void FixedUpdate()
+    {
+        boar.rb.linearVelocity = new Vector2(boar.chaseSpeed * (boar.isFacingRight? 1:-1), boar.rb.linearVelocityY);
+    }
+
     public override void Exit()
     {
         base.Exit();

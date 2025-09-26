@@ -9,7 +9,13 @@ public class PlayerHurtState : PlayerStateBase
     
     public override void Update()
     {
-        //调用携程
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            player.ChangeState(PlayerState.Jump);
+            return;
+        }
+
+        
         if (CheckAnimatorStateName("Hurt", out float animationTime))
         {
             if (animationTime >= 0.9f)

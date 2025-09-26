@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     [HideInInspector]
     public bool isDefending;
     public bool isWallJumping;
+    [HideInInspector] public bool isResting;
     [HideInInspector]
     public bool isUsingSkill;
     
@@ -169,6 +170,12 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
             case PlayerState.UltSkill:
                 stateMachine.ChangeState<PlayerUltimateSkillState>();
                 break;
+            case PlayerState.RestIn:
+                stateMachine.ChangeState<PlayerRestInState>();
+                break;
+            case PlayerState.RestOut:
+                stateMachine.ChangeState<PlayerRestOutState>();
+                break;
         }
     }
     
@@ -228,7 +235,7 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     
     public void Update()
     {
-        if(!(isHurt || isDead || isStun || isDefending || isWallJumping || isUsingSkill))
+        if(!(isHurt || isDead || isStun || isDefending || isWallJumping || isUsingSkill || isResting))
             Flip();
         
         currentSpeed = rb.linearVelocityX;
@@ -313,6 +320,7 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     {
         if (isDead) 
             return;
+        ChangeState(PlayerState.Idle);
         ChangeState(PlayerState.Hurt);
         isHurt = true;
     }
@@ -353,12 +361,16 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     public void TriggerPerfectDefend()
     {
         Debug.Log("完美防御触发!");
+        //通知防御状态逻辑
+        PlayerDefendState defenseState =  (PlayerDefendState)stateMachine.CurrentState;
+        defenseState.TriggerDefend();
         return;
     }
     
     //用于通知玩家激活播放格挡成功的动画
     public void TriggerNormalDefend()
     {
+        Debug.Log("普通防御触发!");
         //通知防御状态逻辑
         PlayerDefendState defenseState =  (PlayerDefendState)stateMachine.CurrentState;
         defenseState.TriggerDefend();
