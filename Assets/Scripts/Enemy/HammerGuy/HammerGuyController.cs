@@ -43,10 +43,10 @@ public class HammerGuyController : EnemyController
                 stateMachine.ChangeState<HammerGuyChaseState>();
                 break;
             case HammerGuyStates.Hurt:
-                
+                stateMachine.ChangeState<HammerGuyHurtState>();
                 break;
             case HammerGuyStates.Die:
-
+                stateMachine.ChangeState<HammerGuyDieState>();
                 break;
             case HammerGuyStates.Attack:
                 stateMachine.ChangeState<HammerGuyAttackState>();
@@ -56,6 +56,9 @@ public class HammerGuyController : EnemyController
                 break;
             case HammerGuyStates.Battle:
                 stateMachine.ChangeState<HammerGuyBattleState>();
+                break;
+            case HammerGuyStates.Stun:
+                stateMachine.ChangeState<HammerGuyStunState>();
                 break;
         }
     }
@@ -97,6 +100,41 @@ public class HammerGuyController : EnemyController
     {
         yield return new WaitForSeconds(attackDuration);
         canAttack = true;
+    }
+
+    #endregion
+
+
+    #region MyRegion
+
+    public void GetHurt()
+    {
+        if(isDead)
+            return;
+        ChangeState(HammerGuyStates.Hurt);
+    }
+
+    public void Die()
+    {
+        ChangeState(HammerGuyStates.Die);
+        enemyUI.SetActive(false);
+    }
+
+    public void GetStun()
+    {
+        ChangeState(HammerGuyStates.Stun);
+        return;
+    }
+
+    public void RecoverStun()
+    {
+        StartCoroutine(Recover());
+    }
+
+    private IEnumerator Recover()
+    {
+        yield return new WaitForSeconds(stunTime);
+        isStun = false;
     }
 
     #endregion

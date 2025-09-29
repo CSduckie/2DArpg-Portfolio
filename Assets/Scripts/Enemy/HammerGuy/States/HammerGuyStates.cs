@@ -9,4 +9,5 @@ public enum HammerGuyStates
     Attack,
     Battle,
     Die,
+    Stun,
 }

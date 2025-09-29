@@ -751,6 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee49b011be609224cb96bf0b683fca14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitVFX: {fileID: 122277201334607662, guid: dd4bf0654b6a10544a3ece0147af0761, type: 3}
   enemyUI: {fileID: 9058595841668068295}
   sprite: {fileID: 2000134662998238534}
   rb: {fileID: 8393767711174223020}
@@ -837,7 +838,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.07022226, y: -0.23132756}
+  m_Offset: {x: -0.07022226, y: -0.23031959}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -847,7 +848,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7377293, y: 0.7383495}
+  m_Size: {x: 0.7377293, y: 0.73633355}
   m_EdgeRadius: 0
 --- !u!114 &8253265174625680779
 MonoBehaviour:

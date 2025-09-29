@@ -4,8 +4,6 @@ public class AssassinStats : CharacterStats
 {
     private AssassinController assassin;
     
-    
-    
     protected override void Start()
     {
         base.Start();

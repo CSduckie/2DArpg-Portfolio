@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301330c6719c8c24f9a12a270a86a9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitVFX: {fileID: 122277201334607662, guid: dd4bf0654b6a10544a3ece0147af0761, type: 3}
   enemyUI: {fileID: 8764486776480684542}
   sprite: {fileID: 7110771565186585182}
   rb: {fileID: 7850679640443415425}
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp:
-    baseValue: 10
+    baseValue: 50
     modifiers: 
   maxExoEnergy:
     baseValue: 0
@@ -459,7 +460,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1690543609
+  m_SortingLayerID: -388878853
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -2954335207920715084, guid: bf644a6887875bc45966a591f7fe00ec, type: 3}

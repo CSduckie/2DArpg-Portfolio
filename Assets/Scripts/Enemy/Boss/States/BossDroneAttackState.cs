@@ -4,12 +4,18 @@ public class BossDroneAttackState : BossStateBase
 {
     public override void Enter()
     {
-        base.Enter();
+        boss.PlayAnimation("ControllingDrones",0f);
+        //生成无人机
+        boss.SpwanDrone();
     }
 
     public override void Update()
     {
-        base.Update();
+        if (boss.droneNum == 0)
+        {
+            boss.ChangeState(BossStates.Idle);
+            return;
+        }
     }
     
     public override void Exit()

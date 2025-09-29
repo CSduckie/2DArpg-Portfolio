@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 public class EnemyController : MonoBehaviour,IStateMachineOwner
 {
+    public GameObject hitVFX;
     public GameObject enemyUI;
     public EnemySprite sprite;
     public Rigidbody2D rb;

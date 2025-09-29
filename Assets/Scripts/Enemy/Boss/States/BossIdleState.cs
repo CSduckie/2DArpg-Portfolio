@@ -20,7 +20,19 @@ public class BossIdleState : BossStateBase
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            boss.ChangeState(BossStates.SmashAttack);
+            boss.ChangeState(BossStates.DroneAttack);
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            boss.ChangeState(BossStates.ArmSmashAttack);
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            boss.ChangeState(BossStates.ForceKillSkill);
             return;
         }
     }

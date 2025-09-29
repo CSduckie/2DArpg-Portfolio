@@ -29,6 +29,7 @@ public class HammerGuyAttackState : HammerGuyStateBase
     public override void Exit()
     {
         hammerGuy.CoolAttack();
+        hammerGuy.hammerGuyWeapon.SetActive(false);
     }
 
 }

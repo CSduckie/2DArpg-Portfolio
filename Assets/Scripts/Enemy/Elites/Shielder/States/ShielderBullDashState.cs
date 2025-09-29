@@ -45,6 +45,7 @@ public class ShielderBullDashState : ShielderStateBase
     {
         shielder.CoolBullDash();
         shielder.isBullAttack = false;
+        shielder.shielderWeapons[2].SetActive(false);
     }
     
 }

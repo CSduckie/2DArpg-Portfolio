@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f478dbf101face6498fe63d81334367e
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Texture0: {fileID: 2800000, guid: f99a508ed45a4b84793c6920052488f9, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 277441
+  packageName: Flashes and Hits VFX
+  packageVersion: 1.0
+  assetPath: Assets/Flashes_Hits/Shaders/VFX_Flash_Shader.shader
+  uploadId: 654207

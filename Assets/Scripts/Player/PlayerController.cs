@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     [Header("防御和完美防御")]
     //检测完美防御
     public bool canPerfectDefend;
+    public SkillConfig defendSkillConfig;
+    [SerializeField] private Transform defendVFXTrans;
+    public GameObject normaldefendVFX;
+    public GameObject perfectDefendVFX;
     [SerializeField] private float perfectDefendWindow;
     [HideInInspector] public bool triggerDefendAnim;
     
@@ -361,6 +365,9 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     public void TriggerPerfectDefend()
     {
         Debug.Log("完美防御触发!");
+        VFXManager.Instance.SpawnVFX(perfectDefendVFX,defendVFXTrans.position,new Vector3(0,0,0),1f);
+        VFXManager.Instance.SpawnVFX(defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].prefab,defendVFXTrans.position,new Vector3(0,0,0),defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].Time);
+        impulseSource.GenerateImpulse(defendSkillConfig.releaseData.attackData.ScreenImpulseValue);
         //通知防御状态逻辑
         PlayerDefendState defenseState =  (PlayerDefendState)stateMachine.CurrentState;
         defenseState.TriggerDefend();
@@ -371,6 +378,9 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     public void TriggerNormalDefend()
     {
         Debug.Log("普通防御触发!");
+        VFXManager.Instance.SpawnVFX(normaldefendVFX,defendVFXTrans.position,new Vector3(0,0,0),1f);
+        VFXManager.Instance.SpawnVFX(defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].prefab,defendVFXTrans.position,new Vector3(0,0,0),defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].Time);
+        impulseSource.GenerateImpulse(defendSkillConfig.releaseData.attackData.ScreenImpulseValue);
         //通知防御状态逻辑
         PlayerDefendState defenseState =  (PlayerDefendState)stateMachine.CurrentState;
         defenseState.TriggerDefend();

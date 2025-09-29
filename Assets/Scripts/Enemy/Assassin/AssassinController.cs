@@ -25,6 +25,7 @@ public class AssassinController : EnemyController
     protected override void Start()
     {
         base.Start();
+        player = GameManager.instance.player.GetComponent<PlayerController>();
         ChangeState(AssassinStates.Appear);
     }
     

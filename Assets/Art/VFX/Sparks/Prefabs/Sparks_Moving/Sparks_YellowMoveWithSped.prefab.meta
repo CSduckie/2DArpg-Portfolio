@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0d637655b4b52314fa6c939999562e9c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 197943
+  packageName: Sparks Effect VFX Particle System
+  packageVersion: 1.0
+  assetPath: Assets/Sparks/Prefabs/Sparks_Moving/Sparks_YellowMoveWithSped.prefab
+  uploadId: 486313

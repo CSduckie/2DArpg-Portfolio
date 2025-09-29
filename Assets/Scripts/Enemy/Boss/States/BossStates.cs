@@ -6,6 +6,7 @@ public enum BossStates
     Hurt,
     DroneAttack,
     SmashAttack,
+    ArmSmashAttack,
     ForceKillSkill,
     Die
 }

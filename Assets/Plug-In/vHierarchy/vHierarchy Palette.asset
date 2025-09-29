@@ -84,6 +84,7 @@ MonoBehaviour:
     - Collab.BuildSucceeded
     - tree_icon_frond
     - VisualEffect Icon
+    - SpriteRenderer Icon
     enabled: 1
   - builtinIcons: []
     customIcons:

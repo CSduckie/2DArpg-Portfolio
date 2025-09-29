@@ -21,7 +21,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
       Scale: {x: 1, y: 1, z: 1}
-      Time: 0
+      Time: 1
     audioClip: {fileID: 0}
     canRotate: 0
     attackData:
@@ -35,17 +35,11 @@ MonoBehaviour:
           rotation: {x: 0, y: 0, z: 0}
           Scale: {x: 1, y: 1, z: 1}
           Time: 0
-        - prefab: {fileID: 2143341799977677925, guid: f4972420c82c7ce4c986e61b24439353, type: 3}
-          audioClip: {fileID: 0}
-          position: {x: 0, y: 0, z: 0}
-          rotation: {x: 0, y: 0, z: 0}
-          Scale: {x: 1, y: 1, z: 1}
-          Time: 0
         energyCost: 0
-        stunValue: 0
+        stunValue: 5
         HardTime: 0
-        RepelVelocity: {x: 1, y: 2}
+        RepelVelocity: {x: 1, y: 0}
         RepelTime: 0
-      ScreenImpulseValue: 0.1
+      ScreenImpulseValue: 0.2
       FreezeFrameTime: 0
       FreezeGameTime: 0
