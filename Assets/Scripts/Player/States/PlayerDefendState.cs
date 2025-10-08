@@ -60,6 +60,7 @@ public class PlayerDefendState : PlayerStateBase
                 player.UpdateVelocity(false);
                 break;
             case ChildState.Trigger:
+                
                 //检测动画播放是否完毕，如果完毕则回到Idle
                 if (CheckAnimatorStateName("DefendSuccess", out float animationTime))
                 {

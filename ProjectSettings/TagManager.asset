@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - AirWall
+  - AudioManager
   layers:
   - Default
   - TransparentFX

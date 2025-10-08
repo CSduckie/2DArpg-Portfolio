@@ -4,6 +4,7 @@ public class BossDroneAttackState : BossStateBase
 {
     public override void Enter()
     {
+        boss.canCallDrone = false;
         boss.PlayAnimation("ControllingDrones",0f);
         //生成无人机
         boss.SpwanDrone();
@@ -20,7 +21,7 @@ public class BossDroneAttackState : BossStateBase
     
     public override void Exit()
     {
-        base.Exit();
+        boss.CoolDroneAttackSkill();
     }
 
 }

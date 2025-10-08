@@ -1,42 +1,76 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-public class BossArmController : MonoBehaviour
+public class BossArmController : EnemyController
 {
-    [SerializeField] private float moveSpeed;
-    private Rigidbody2D rb;
+    //无人机的生成挂载点
+    public Vector2 hookPos { get; private set; }
+    private Vector2 spwanPos;
+    private bool currentFacing;
+    public BossController boss;
+    [Header("移动速度")]
+    public float moveSpeed;
     
-    [Header("碰撞检测")]
-    [SerializeField] protected Transform groundCheck;
-    [SerializeField] protected float groundCheckDistance;
-    [SerializeField] protected LayerMask whatIsGround;
+    public GameObject armHitBox;
+    
+    public void Init(Vector2 _hookPos,BossController _boss)
+    {
+        spwanPos = transform.position;
+        hookPos = _hookPos;
+        if(hookPos.x < 0)
+            currentFacing = true;
+        else 
+            currentFacing = false;
+        boss = _boss;
+        this.transform.SetParent(boss.transform);
+    }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        base.Start();
+        ChangeState(BossArmState.Idle);
+        MoveToHookPos();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MoveToHookPos()=>transform.DOLocalMove(hookPos, 1f);
+
+    
+    //状态机
+    public void ChangeState(BossArmState bossArmState)
     {
-        
+        switch(bossArmState)
+        {
+            case BossArmState.Idle:
+                stateMachine.ChangeState<BossArmIdleState>();
+                break;
+            case BossArmState.Attack:
+                stateMachine.ChangeState<BossArmATKState>();
+                break;
+            case BossArmState.Leave:
+                stateMachine.ChangeState<BossArmLeaveState>();
+                break;
+            case BossArmState.Hide:
+                stateMachine.ChangeState<BossArmHideState>();
+                break;
+            case BossArmState.Hurt:
+                break;
+        }
     }
 
-    void FixedUpdate()
+    public void DestroySelfOn(float time)
     {
-        if(!IsGroundDetected()) 
-            rb.linearVelocity = new Vector2(0, moveSpeed);
-        else
-            rb.linearVelocity = Vector2.zero;
+        StartCoroutine(DestroyCorou(time));
+    }
+
+    private IEnumerator DestroyCorou(float time)
+    {
+        yield return new WaitForSeconds(time);
+        ChangeState(BossArmState.Hide);
+        this.gameObject.SetActive(false);
+        this.transform.position = spwanPos;
+        isFacingRight = currentFacing;
     }
     
-    private bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position,
-        Vector2.down, groundCheckDistance, whatIsGround);
-    
-    protected virtual void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(groundCheck.position,
-            new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
-    }
 }

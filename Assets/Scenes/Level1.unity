@@ -5613,11 +5613,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 834c925b6132fcc43a72c7e312ba420a, type: 3}
     - target: {fileID: 4746276504699951689, guid: e342e7a5fcd81b841acf6c8b61fdb697, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 175.97
+      value: -4.8
       objectReference: {fileID: 0}
     - target: {fileID: 4746276504699951689, guid: e342e7a5fcd81b841acf6c8b61fdb697, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.76
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4746276504699951689, guid: e342e7a5fcd81b841acf6c8b61fdb697, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14964,6 +14964,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4344233048626636987, guid: 1a7d5216003534c449d7f21df99bf22a, type: 3}
   m_PrefabInstance: {fileID: 122898096}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &702724556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 702724557}
+  - component: {fileID: 702724558}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: AudioManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &702724557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702724556}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1837127865}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &702724558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702724556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ac2d38795ff5d4190565679d37b291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ShieldGuradSound
+    clip: {fileID: 8300000, guid: 2c8cce23080635f479735af3d1cd5264, type: 3}
+    volume: 0.444
+    pitch: 0.1
+    source: {fileID: 0}
 --- !u!4 &703187367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 514205866090080926, guid: fbb5d778de7455f44a9f0d878351c677, type: 3}
@@ -62713,6 +62763,7 @@ Transform:
   m_Children:
   - {fileID: 2017900679}
   - {fileID: 67530381}
+  - {fileID: 702724557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1837127866

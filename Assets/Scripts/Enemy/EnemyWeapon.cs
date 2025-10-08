@@ -7,7 +7,7 @@ public class EnemyWeapon : MonoBehaviour
 
     private EnemyController enemy;
     private float weaponDamage;
-    private float stunValue;
+    public float stunValue { get; private set; }
     private Vector2 repelDir;
     private void Start()
     {

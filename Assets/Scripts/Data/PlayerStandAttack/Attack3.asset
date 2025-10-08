@@ -36,7 +36,7 @@ MonoBehaviour:
           Scale: {x: 1, y: 1, z: 1}
           Time: 0
         energyCost: 0
-        stunValue: 10
+        stunValue: 15
         HardTime: 0
         RepelVelocity: {x: 1, y: 0}
         RepelTime: 0

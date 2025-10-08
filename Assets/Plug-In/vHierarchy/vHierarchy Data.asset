@@ -77,6 +77,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-183363723-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-2017900678-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-96889774356380416-297170461
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-702724556-0
         values:
         - colorIndex: 1
           iconNameOrGuid: Folder Icon
@@ -300,6 +301,10 @@ MonoBehaviour:
           isColorRecursive: 0
         - colorIndex: 0
           iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
           isIconRecursive: 0
           isColorRecursive: 0
     - goDatas_byGlobalId:
@@ -677,6 +682,16 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-241938110-0
         - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-334687387-0
         - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-330417687-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-66942198-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1843259546-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-781521481-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-131664130-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-380376354-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1494309478-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-782795675-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1841207655-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1304118052-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1146646219-0
         values:
         - colorIndex: 1
           iconNameOrGuid: Folder Icon
@@ -924,6 +939,46 @@ MonoBehaviour:
           isColorRecursive: 0
         - colorIndex: 0
           iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: PreMatQuad
           isIconRecursive: 0
           isColorRecursive: 0
         - colorIndex: 0

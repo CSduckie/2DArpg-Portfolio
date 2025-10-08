@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class BossController : EnemyController
 {
+    public BossStats bossStats { get; private set; }
+    
+    public bool willStun;
     [Header("Boss无人机技能")] 
     public GameObject bossDronePrefab;
     public int bossDroneSpawnNum;
@@ -11,29 +14,56 @@ public class BossController : EnemyController
     public Vector2[] droneAttackingPosOffset;
     //无人机数量，用于追踪是否所有无人机回到boss处
     [HideInInspector] public int droneNum;
+    public bool canCallDrone;
+    [Range(0,1)]public float callDroneChance;
+    public float dronSkillCD;
+    
     
     [Header("Boss飞行参数")] 
     public Transform heightPoint;
-
     public float bossSpeed;
-    public float bossClimbUpSpeed;
     
     [Header("Boss机械爪攻击技能")]
     public GameObject bossClaws;
-    public int spwanClawNum;
-    public float spwanClawDuration;
-    
-    [Header("Boss强杀技能参数")]
-    public float chaseSpeed;
+    public Transform[] bossClawSpawnPos;
+    public BossArmController[]  bossArms;
+    public bool spwanCompleted;
+    public Transform bossArmAttackPos;
+    public bool canUseClaw;
+    [Range(0,1)]public float useClawChance;
+    public float clawSkillCD;
+
+
+    [Header("Boss强杀技能参数")] 
+    public float enemySpwanDuration;
     public int currentForceKillChargeStage;
     public GameObject[] sparkVFX;
+    public bool forceKillTriggered;
+    public Transform bossForceKillChargingTrans;
+    public Transform EnemySpwanTransL;
+    public Transform EnemySpwanTransR;
+    public GameObject assassinPrefab;
     
-    //玩家位置
-    private Vector2 playerPos;
+    
+    [Header("Boss炸弹技能参数")] 
+    public GameObject bombPrefab;
+    [SerializeField] private Transform bombSpwanTrans;
+    public float bombSpwanDuration;
+    public bool canBomb;
+    [Range(0,1)]public float useBombChance;
+    public float bombSkillCD;
+    
+    [Header("Boss砸击技能")] 
+    [Range(0,1)] public float smashChance;
+    public float smashCD;
+    public bool canSmash;
+    public GameObject smashHitBox;
+    
     protected override void Start()
     {
         base.Start();
-        playerPos = GameManager.instance.player.transform.position;
+        transform.position = heightPoint.transform.position;
+        bossStats = GetComponent<BossStats>();
         //TODO:添加过场后，删除这个代码
         ChangeState(BossStates.Idle);
     }
@@ -56,7 +86,16 @@ public class BossController : EnemyController
                 stateMachine.ChangeState<BossArmAttackState>();
                 break;
             case BossStates.ForceKillSkill:
-                stateMachine.ChangeState<BossForceKillSkill>();
+                stateMachine.ChangeState<BossForceKillSkillState>();
+                break;
+            case BossStates.BombAttackSkill:
+                stateMachine.ChangeState<BossBombAttackState>();
+                break;
+            case BossStates.Stun:
+                stateMachine.ChangeState<BossStunState>();
+                break;
+            case BossStates.Die:
+                stateMachine.ChangeState<BossDieState>();
                 break;
         }
     }
@@ -84,20 +123,54 @@ public class BossController : EnemyController
     #region 机械爪技能携程
     public void SpwanClaws()
     {
-        StartCoroutine(spwanClawsCoroutine( spwanClawNum, spwanClawDuration)); 
-    }
-    private IEnumerator spwanClawsCoroutine(int _numToSpwan, float spwanClawDuration)
-    {
-        for (int i = 0; i < _numToSpwan; i++)
+        spwanCompleted = false;
+        //检测当前是否创建过爪子了
+        if (bossArms[0] == null && bossArms[1] == null)
         {
-            var newClaw = Instantiate(bossClaws, new Vector2(GameManager.instance.player.transform.position.x,13), Quaternion.identity);
-            yield return new WaitForSeconds(spwanClawDuration);
+            //创建一左，一右两个爪子
+            //将左爪子初始时Flip一次
+            var leftClaw = Instantiate(bossClaws,bossClawSpawnPos[0].position, Quaternion.identity);
+            BossArmController leftClawScript = leftClaw.GetComponent<BossArmController>();
+            leftClawScript.Flip();
+            leftClawScript.Init(new Vector2(-6,-1.6f),this);
+            bossArms[0] =  leftClawScript;
+            var RightClaw =  Instantiate(bossClaws,bossClawSpawnPos[1].position, Quaternion.identity);
+            BossArmController rightClawScript = RightClaw.GetComponent<BossArmController>();
+            rightClawScript.Init(new Vector2(6,-1.6f),this);
+            bossArms[1] =  rightClawScript;
         }
+        else
+        {
+            //如果已经存在一组了，那就设置他们的正确翻转，然后SetActive
+            if (bossArms[0].isFacingRight)
+            {
+                bossArms[0].gameObject.SetActive(true);
+                bossArms[0].Flip();
+                bossArms[0].MoveToHookPos();
+                bossArms[0].ChangeState(BossArmState.Idle);
+            }
+
+            if (!bossArms[1].isFacingRight)
+            {
+                bossArms[1].gameObject.SetActive(true);
+                bossArms[1].Flip();
+                bossArms[1].MoveToHookPos();
+                bossArms[1].ChangeState(BossArmState.Idle);
+            }
+        }
+        spwanCompleted = true;
     }
     #endregion
+    
+    #region 强杀技能携程和逻辑
 
-
-    #region 强杀技能携程
+    public void SpwanEnemies()
+    {
+        var leftEnemy = Instantiate(assassinPrefab,EnemySpwanTransL.position,Quaternion.identity);
+        var rightEnemy = Instantiate(assassinPrefab,EnemySpwanTransR.position,Quaternion.identity);
+        rightEnemy.GetComponent<EnemyController>().Flip();
+    }
+    
     
     //TODO:需要优化
     public void enableRandomSparks()
@@ -115,5 +188,76 @@ public class BossController : EnemyController
         }
     }
     
+    #endregion
+    
+    #region 炸弹投放技能携程
+
+    public void SpwanBombs()
+    {
+        Instantiate(bombPrefab,bombSpwanTrans.position,Quaternion.identity);
+    }
+    
+    #endregion
+
+    #region 技能携程冷却
+
+    public void CoolSmashSkill()
+    {
+        StartCoroutine(coolSmashCoroutine());
+    }
+
+    private IEnumerator coolSmashCoroutine()
+    {
+        yield return new WaitForSeconds(smashCD);
+        canSmash = true;
+    }
+    public void CoolDroneAttackSkill()
+    {
+        StartCoroutine(CoolDroneAttackCorutine());
+    }
+
+    private IEnumerator CoolDroneAttackCorutine()
+    {
+        yield return new WaitForSeconds(dronSkillCD);
+        canCallDrone = true;
+    }
+    
+    public void CoolClawSkill()
+    {
+        StartCoroutine(CoolClawSkillCorutine());
+    }
+
+    private IEnumerator CoolClawSkillCorutine()
+    {
+        yield return new WaitForSeconds(clawSkillCD);
+        canUseClaw = true;
+    }
+    
+    
+    public void CoolBombSkill()
+    {
+        StartCoroutine(coolBombCoroutine());
+    }
+
+    private IEnumerator coolBombCoroutine()
+    {
+        yield return new WaitForSeconds(bombSkillCD);
+        canBomb = true;
+    }
+    #endregion
+
+    #region 状态更改
+
+    public void Die()
+    {
+        ChangeState(BossStates.Die);
+        return;
+    }
+
+    public void GetStun()
+    {
+        willStun = true;
+    }
+
     #endregion
 }

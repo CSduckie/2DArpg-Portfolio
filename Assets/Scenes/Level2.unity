@@ -85943,11 +85943,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1307933854338977002, guid: 900a217064dc68d4c9d53e82930c2206, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 154.66
+      value: 167.68
       objectReference: {fileID: 0}
     - target: {fileID: 1307933854338977002, guid: 900a217064dc68d4c9d53e82930c2206, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.11
+      value: 1.43
       objectReference: {fileID: 0}
     - target: {fileID: 1307933854338977002, guid: 900a217064dc68d4c9d53e82930c2206, type: 3}
       propertyPath: m_LocalPosition.z
@@ -85999,7 +85999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6018033806830725421, guid: 900a217064dc68d4c9d53e82930c2206, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6354291815561119252, guid: 900a217064dc68d4c9d53e82930c2206, type: 3}
       propertyPath: arena
@@ -86049,7 +86049,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2039
 --- !u!114 &1649002783
 MonoBehaviour:
   m_ObjectHideFlags: 0
