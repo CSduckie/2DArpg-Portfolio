@@ -16,7 +16,7 @@ public class PlayerUI : MonoBehaviour
     [Header("能量值相关")] 
     public EnergySlotManager energySlotManager;
     
-    private void Start()
+    private void OnEnable()
     {
         playerStats.onHealthChanged += UpdateHealthUI;
         playerStats.onCoolingChanged += UpdateCoolingUI;

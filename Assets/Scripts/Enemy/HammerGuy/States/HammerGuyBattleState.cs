@@ -21,6 +21,8 @@ public class HammerGuyBattleState : HammerGuyStateBase
         {
             hammerGuy.ChangeState(HammerGuyStates.Chase);
         }
+        
+
         return;
     }
 

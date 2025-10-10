@@ -58,7 +58,7 @@ public class PlayerWeapon : MonoBehaviour
             rot =  Quaternion.Euler(0f, 0f, randomZ);
 
         
-        var vfxSpwanPos = enemy.GetComponentInChildren<EnemySprite>().transform.position;
+        var vfxSpwanPos = enemy.GetComponent<EnemyController>().hitVFXSpwanPoint.position;
         //通知特效器生成所有武器特效
         foreach (var vfx in hitVFX)
         {

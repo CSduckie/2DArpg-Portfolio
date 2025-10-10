@@ -6,7 +6,9 @@ public class EnemyController : MonoBehaviour,IStateMachineOwner
     public GameObject enemyUI;
     public EnemySprite sprite;
     public Rigidbody2D rb;
+    public Transform hitVFXSpwanPoint;
     protected StateMachine stateMachine;
+    
     
     [Header("碰撞检测")]
     [SerializeField] protected Transform groundCheck;

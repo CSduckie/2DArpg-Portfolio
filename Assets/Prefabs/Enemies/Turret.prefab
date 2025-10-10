@@ -275,6 +275,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 6580461105895433334}
   enemy: {fileID: 4348343284530152884}
+  sprite: {fileID: 0}
+  material: {fileID: 0}
 --- !u!1 &3646353243797072005
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +739,7 @@ Transform:
   - {fileID: 4004730873169324227}
   - {fileID: 1839387934167525463}
   - {fileID: 5912310907429322446}
+  - {fileID: 4260758738264188260}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4348343284530152884
@@ -755,6 +758,7 @@ MonoBehaviour:
   enemyUI: {fileID: 9058595841668068295}
   sprite: {fileID: 2000134662998238534}
   rb: {fileID: 8393767711174223020}
+  hitVFXSpwanPoint: {fileID: 4260758738264188260}
   groundCheck: {fileID: 4004730873169324227}
   groundCheckDistance: 0
   wallCheck: {fileID: 4004730873169324227}
@@ -868,6 +872,37 @@ MonoBehaviour:
   maxExoEnergy:
     baseValue: 0
     modifiers: 
+--- !u!1 &8828757438522669181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4260758738264188260}
+  m_Layer: 8
+  m_Name: VFXSpwanPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4260758738264188260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8828757438522669181}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.091, y: -0.082, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3270538136720743509}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9058595841668068295
 GameObject:
   m_ObjectHideFlags: 0

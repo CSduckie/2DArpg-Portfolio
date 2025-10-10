@@ -32,11 +32,21 @@ public class HammerGuyChaseState : HammerGuyStateBase
             hammerGuy.ChangeState(HammerGuyStates.Battle);
             return;
         }
+        
+        if (!hammerGuy.IsGroundDetected())
+        {
+            hammerGuy.ChangeState(HammerGuyStates.Idle);
+            Debug.Log("hammerGuy.!IsGroundDetected()");
+        }
     }
 
     public override void FixedUpdate()
     {
-        hammerGuy.rb.linearVelocity =  new Vector2(hammerGuy.chaseSpeed * (hammerGuy.isFacingRight? 1:-1), hammerGuy.rb.linearVelocityY);
+        if(hammerGuy.IsGroundDetected())
+            hammerGuy.rb.linearVelocity =  new Vector2(hammerGuy.chaseSpeed * (hammerGuy.isFacingRight? 1:-1), hammerGuy.rb.linearVelocityY);
+        else
+            hammerGuy.rb.linearVelocity = Vector2.zero;
+
     }
     
     public override void Exit()

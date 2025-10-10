@@ -12,6 +12,8 @@ public class PlayerIdleState : PlayerStateBase
 
     public override void Update()
     {
+        if(!player.canReciveInput) return;
+        
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             player.ChangeState(PlayerState.Move);

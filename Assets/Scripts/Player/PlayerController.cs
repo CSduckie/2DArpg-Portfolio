@@ -25,9 +25,10 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     [HideInInspector] public bool isHurt;
     [HideInInspector] public bool isDead;
     [HideInInspector] public bool isStun;
+    //攻击动画调用的
     [HideInInspector] public bool canInput;
     [HideInInspector] public bool CanSwitch;
-    
+    [HideInInspector] public bool canReciveInput = true;
     [HideInInspector]
     public bool isDefending;
     public bool isWallJumping;
@@ -111,6 +112,7 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
         ChangeState(PlayerState.Idle);
         cameraFollow = cameraFollowPoint.GetComponent<CameraFollow>();
         impulseSource = FindFirstObjectByType<CinemachineImpulseSource>();
+        canReciveInput = true;
     }
 
     //状态机
@@ -239,6 +241,8 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     
     public void Update()
     {
+        if(!canReciveInput) return;
+        
         if(!(isHurt || isDead || isStun || isDefending || isWallJumping || isUsingSkill || isResting))
             Flip();
         
@@ -251,6 +255,18 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
         CheckForDefendInput();
     }
 
+    public void DisableInput()
+    {
+        canReciveInput = false;   
+        Debug.Log("DisableInput");
+    }
+
+    public void EnableInput()
+    {
+        canReciveInput = true;
+        Debug.Log(canReciveInput);
+    }
+    
 
     #region Collision
     public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position,
