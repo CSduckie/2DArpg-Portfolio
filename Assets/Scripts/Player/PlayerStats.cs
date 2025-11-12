@@ -79,6 +79,7 @@ public class PlayerStats : CharacterStats
                     player.GetStun();
                 else
                     player.TriggerNormalDefend();
+                Debug.Log("当前架势值为：" + currentCooling);
              }
              return;
         }
@@ -88,11 +89,14 @@ public class PlayerStats : CharacterStats
         
         //先判定是否处于一个正在Stun的状态，如果是，那么清空Stun条并且造成额外伤害
         if (!player.isStun)
+        {
             currentCooling += _stunValue;
+            Debug.Log("当前架势值为：" + currentCooling);
+        }
         else
         {
             currentCooling = 0;
-            currentHealth -= 50*_damage;
+            currentHealth -= 5 *_damage;
         }
         
         player.rb.linearVelocity =new Vector2(repelDir.x * attackDir,repelDir.y);

@@ -4,6 +4,7 @@ public class ShielderCloseAttackState : ShielderStateBase
 {
     public override void Enter()
     {
+        Debug.Log("进入closeAttack");
         shielder.PlayAnimation("CloseAttack",0f);
         shielder.isCloseAttack = true;
     }
@@ -24,7 +25,6 @@ public class ShielderCloseAttackState : ShielderStateBase
     public override void Exit()
     {
         shielder.CoolClosesAttack();
-        shielder.isCloseAttack = false;
         shielder.shielderWeapons[0].SetActive(false);
     }
 

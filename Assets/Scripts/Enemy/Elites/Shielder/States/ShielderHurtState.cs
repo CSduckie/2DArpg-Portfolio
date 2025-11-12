@@ -18,7 +18,6 @@ public class ShielderHurtState : ShielderStateBase
                 return;
             }
         }
-
     }
 
     public override void Exit()

@@ -169,6 +169,8 @@ public class BossController : EnemyController
         var leftEnemy = Instantiate(assassinPrefab,EnemySpwanTransL.position,Quaternion.identity);
         var rightEnemy = Instantiate(assassinPrefab,EnemySpwanTransR.position,Quaternion.identity);
         rightEnemy.GetComponent<EnemyController>().Flip();
+        leftEnemy.SetActive(true);
+        rightEnemy.SetActive(true);
     }
     
     

@@ -47,13 +47,11 @@ public class ArcherController : EnemyController
     protected override void Start()
     {
         base.Start();
-        
         //开始时冷却一边所有技能
         CoolSpecialAttack();
         CoolTeleport();
         CoolNormalAttack();
-        
-        ChangeState(ArcherStates.Idle);
+        ChangeState(ArcherStates.Appear);
     }
     
     //状态机
@@ -84,6 +82,9 @@ public class ArcherController : EnemyController
                 break;
             case ArcherStates.Stun:
                 stateMachine.ChangeState<ArcherStunState>();
+                break;
+            case ArcherStates.Appear:
+                stateMachine.ChangeState<ArcherAppearState>();
                 break;
         }
     }
@@ -170,8 +171,11 @@ public class ArcherController : EnemyController
         ChangeState(ArcherStates.Stun);
 
     }
-    
-    
+
+    public void StartEliteFight()
+    {
+        //ChangeState(ArcherStates.Appear);
+    }
     #endregion
     
 }

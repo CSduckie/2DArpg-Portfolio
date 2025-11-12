@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ShielderIdleState : ShielderStateBase
 {
+
     public override void Enter()
     {
         shielder.PlayAnimation("Idle",0f);
@@ -9,6 +10,7 @@ public class ShielderIdleState : ShielderStateBase
 
     public override void Update()
     {
+        
         //检查是否可以使用bullDash
         if (shielder.canBullDash)
         {
@@ -20,25 +22,37 @@ public class ShielderIdleState : ShielderStateBase
             }
         }
 
-        if (Mathf.Abs(shielder.playerTrans.position.x - shielder.transform.position.x) <= shielder.attackRange)
+        if (shielder.canCloseATK)
         {
-            float skillChance = Random.value;
-            if (skillChance <= shielder.useMultiCloseATKChance)
+            if (Mathf.Abs(shielder.playerTrans.position.x - shielder.transform.position.x) <= shielder.attackRange)
             {
-                shielder.ChangeState(ShielderState.MultiCloseAttack); 
+                float skillChance = Random.value;
+                if (skillChance <= shielder.useCloseATKChance && shielder.canCloseATK)
+                {
+                    shielder.ChangeState(ShielderState.CloseAttack); 
+                    return;
+                }
             }
-            else if (skillChance <= shielder.useCloseATKChance)
-            {
-                shielder.ChangeState(ShielderState.CloseAttack); 
-            }
-            return;
         }
         
+        if (shielder.canMultiCloseATK)
+        {
+            if (Mathf.Abs(shielder.playerTrans.position.x - shielder.transform.position.x) <= shielder.attackRange)
+            {
+                float skillChance = Random.value;
+                if (skillChance <= shielder.useMultiCloseATKChance && shielder.canMultiCloseATK)
+                {
+                    shielder.ChangeState(ShielderState.MultiCloseAttack); 
+                    return;
+                }
+            }
+        }
         
         //检查，进入攻击距离，攻击
         if (Mathf.Abs(shielder.playerTrans.position.x - shielder.transform.position.x) > shielder.attackRange)
         {
             shielder.ChangeState(ShielderState.Walk);
+            return;
         }
     }
 

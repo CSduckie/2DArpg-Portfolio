@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Cinemachine;
-using VHierarchy.Libs;
 
 public class PlayerController : MonoBehaviour, IStateMachineOwner
 {
@@ -360,7 +359,7 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     //TODO:可能需要修改写在状态机内部
     private void CheckForDefendInput()
     {
-        if (!isHurt && !isDead && IsGroundDetected() && Input.GetMouseButton(1) &&!isDefending)
+        if (!isHurt && !isDead && IsGroundDetected() && Input.GetMouseButton(1) &&!isDefending && !isStun)
         {
             ChangeState(PlayerState.Defend);
             return;

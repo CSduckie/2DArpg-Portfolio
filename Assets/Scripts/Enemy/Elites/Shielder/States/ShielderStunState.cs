@@ -7,7 +7,7 @@ public class ShielderStunState : ShielderStateBase
         Debug.Log("Entering Shielder Stun State");
         shielder.isStun = true;
         shielder.Stun();
-        shielder.PlayAnimation("Hurt",0f);
+        shielder.PlayAnimation("Stun",0f);
     }
 
     public override void Update()
@@ -24,5 +24,4 @@ public class ShielderStunState : ShielderStateBase
     {
         shielder.GetComponent<ShielderStats>().clearCoolingUI();
     }
-
 }

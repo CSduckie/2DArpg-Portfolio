@@ -3,23 +3,18 @@ using UnityEngine;
 using System.Collections;
 using Unity.Cinemachine;
 using System.Linq;
-public class CameraAnimation : MonoBehaviour
+public class EnemyFight : MonoBehaviour
 {
-    public CinemachineCamera vcam;
-    public CinemachineConfiner2D confiner;
-    public float targetSize = 3f;
-    private float originalSize;
-    public float duration = 1f;
+    public CinemachineCamera eliteFightCamera;
+    public CinemachineCamera normalFollowCamera;
+    
+    
     public float wave1wave2Duration = 2f;
     public List<GameObject> enemies1;
     public List<GameObject> enemies2;
     private bool hasTriggeredWave2;
     private bool sceneTransitionTriggered = false;
-
-    private void Start()
-    {
-        originalSize = vcam.Lens.OrthographicSize;
-    }
+    public GameObject airWall;
     
     private void Update()
     {
@@ -41,25 +36,14 @@ public class CameraAnimation : MonoBehaviour
                 {
                     sceneTransitionTriggered = true;
                     Debug.Log("你赢了");
-                    StartCoroutine(WinEventCoroutine());
+                    airWall.SetActive(false);
+                    eliteFightCamera.Priority = 10;
+                    normalFollowCamera.Priority = 20;
                 }
             }
         }
     }
-    
-    #region 玩家关卡一获胜后逻辑
 
-    private IEnumerator WinEventCoroutine()
-    {
-        yield return new WaitForSeconds(5f);
-        StartZoom(originalSize,duration);
-        GameManager.instance.player.ChangeState(PlayerState.RestIn);
-        yield return new WaitForSeconds(5f);
-        SceneLoader.Instance.LoadSceneAsync("Level2");
-    }
-    
-    #endregion
-    
     
 
     #region 玩家进入触发逻辑
@@ -67,42 +51,15 @@ public class CameraAnimation : MonoBehaviour
     //触发器判断玩家进入
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
-            //玩家进入，开始镜头动画
-            StartZoom(targetSize,duration);
-    }
-    private void StartZoom(float _targetSize, float _duration)
-    {
-        //携程调用
-        StartCoroutine(ZoomCoroutine(_targetSize, _duration));
-    }
-    IEnumerator ZoomCoroutine(float newSize, float time)
-    {
-        var lens = vcam.Lens; // 取结构体
-        float startSize = lens.OrthographicSize;
-        float elapsed = 0f;
-
-        while (elapsed < time)
+        if (other.CompareTag("Player"))
         {
-            elapsed += Time.deltaTime;
-            lens.OrthographicSize = Mathf.Lerp(startSize, newSize, elapsed / time);
-            vcam.Lens = lens; // 必须写回，结构体不自动引用
-
-            // 关键：更新 Confiner 边界缓存
-            if (confiner != null)
-                confiner.InvalidateLensCache();
-
-            yield return null;
-            lens = vcam.Lens; // 重新取出最新值
+            eliteFightCamera.Priority = 20;
+            normalFollowCamera.Priority = 10;
+            ActiveWave1AllEnemies();
+            airWall.SetActive(true);
         }
-
-        lens.OrthographicSize = newSize;
-        vcam.Lens = lens;
-        ActiveWave1AllEnemies();
-        if (confiner != null)
-            confiner.InvalidateLensCache();
     }
-
+    
     private void ActiveWave1AllEnemies()
     {
         foreach (var enemy in enemies1)

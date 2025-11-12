@@ -155,7 +155,7 @@ public class ShielderController : EnemyController
     //这个函数被用于防反
     public void GetStunning()
     {
-        if (isMultiAttack)
+        if (isMultiAttack || isCloseAttack || isBullAttack || isCloseAttack)
             return;
         ChangeState(ShielderState.Hurt);
     }
@@ -174,6 +174,7 @@ public class ShielderController : EnemyController
     public void StartShielderFight()
     {
         ChangeState(ShielderState.Idle);
+        Debug.Log("bossFight开始");
     }
     
     #endregion

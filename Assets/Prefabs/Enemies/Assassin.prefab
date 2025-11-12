@@ -75,6 +75,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1108602941760226467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4150873617541871177}
+  m_Layer: 8
+  m_Name: VFXspwanPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4150873617541871177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108602941760226467}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7857089032682767924}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1583490632486280163
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +446,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1690543609
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -7140418674251923426, guid: 4d4e55e415d20624091c1cd016555cdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -442,6 +473,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 651437419868365328}
   enemy: {fileID: 8095180059408983665}
+  sprite: {fileID: 0}
+  material: {fileID: 0}
 --- !u!95 &651437419868365328
 Animator:
   serializedVersion: 7
@@ -671,7 +704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7857089032682767924
 Transform:
   m_ObjectHideFlags: 0
@@ -690,6 +723,7 @@ Transform:
   - {fileID: 1853680143373832001}
   - {fileID: 8876064694309388780}
   - {fileID: 1778308606364978521}
+  - {fileID: 4150873617541871177}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8095180059408983665
@@ -704,9 +738,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabb302b7bbbba64593531724fffebb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitVFX: {fileID: 0}
   enemyUI: {fileID: 4292474452218111383}
   sprite: {fileID: 4313353048539301592}
   rb: {fileID: 588613032065336693}
+  hitVFXSpwanPoint: {fileID: 4150873617541871177}
   groundCheck: {fileID: 1853680143373832001}
   groundCheckDistance: 0
   wallCheck: {fileID: 8876064694309388780}

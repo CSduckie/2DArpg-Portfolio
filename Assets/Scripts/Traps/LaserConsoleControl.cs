@@ -71,7 +71,7 @@ public class LaserConsoleControl : MonoBehaviour
             if (IsWallDetected())
             {
                 Flip();
-                Debug.Log("Wall");
+                //Debug.Log("Wall");
             }
         }
     }

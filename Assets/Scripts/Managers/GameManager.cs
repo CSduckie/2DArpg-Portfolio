@@ -27,6 +27,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        FindPlayer();
+        
+    }
+
+    public void FindPlayer()
+    {
         player = FindFirstObjectByType<PlayerController>();
+        Debug.Log("尝试寻找玩家");
     }
 }

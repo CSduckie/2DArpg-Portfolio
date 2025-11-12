@@ -6,6 +6,7 @@ public class ShielderBullDashState : ShielderStateBase
     public override void Enter()
     {
         shielder.isBullAttack = true;
+        shielder.shielderWeapons[2].SetActive(true);
         //进入时锁定一次玩家
         if (shielder.playerTrans.position.x > shielder.transform.position.x)
         {

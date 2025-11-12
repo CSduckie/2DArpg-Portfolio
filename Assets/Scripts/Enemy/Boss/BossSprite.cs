@@ -5,6 +5,7 @@ public class BossSprite : EnemySprite
 
     public float flashTime;
     public GameObject lights;
+    
     public void StartFlash()
     {
         StartCoroutine(damageFlash());
@@ -12,7 +13,6 @@ public class BossSprite : EnemySprite
 
     private IEnumerator damageFlash()
     {
-        
         float currentFlashAmount = 0f;
         float elapsedTime = 0f;
         while (elapsedTime < flashTime)

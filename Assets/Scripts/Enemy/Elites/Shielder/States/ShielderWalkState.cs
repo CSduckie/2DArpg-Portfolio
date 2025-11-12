@@ -41,6 +41,7 @@ public class ShielderWalkState : ShielderStateBase
         if (Mathf.Abs(shielder.playerTrans.position.x - shielder.transform.position.x) < shielder.attackRange)
         {
             shielder.ChangeState(ShielderState.Idle);
+            return;
         }
         
     }

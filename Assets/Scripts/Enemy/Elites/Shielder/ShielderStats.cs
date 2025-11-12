@@ -18,13 +18,18 @@ public class ShielderStats : CharacterStats
     
     public override void TakeDamage(float _damage,float _stunValue, int attackDir,Vector2 repelDir,CharacterStats _attackerStats)
     {
-
         if (shielder.isSleeping)
             return;
         
         shielder.rb.linearVelocity = new Vector2(repelDir.x * attackDir,0);
+
+        if (!shielder.isStun)
+            currentHealth -= _damage;
+        else
+            currentHealth -= 2 * _damage;
         
-        currentHealth -= _damage;
+        shielder.GetComponentInChildren<ShielderSprite>().StartFlash();
+        
         //Health UI Update
         onHealthChanged?.Invoke();
         
@@ -62,8 +67,16 @@ public class ShielderStats : CharacterStats
     public override void GetPerfectDefend(int _attackDir, Vector2 _repelDir)
     {
         Debug.Log("被玩家完美格挡");
-        shielder.GetStunning();
-        GettingStunValue(10);
+        //检测当前处于什么状态，如果是普通状态则:
+        if (shielder.isBullAttack)
+        {
+            GettingStunValue(1000);
+        }
+        else
+        {
+            shielder.GetStunning();
+            GettingStunValue(5);
+        }
     }
     
     //增加失衡

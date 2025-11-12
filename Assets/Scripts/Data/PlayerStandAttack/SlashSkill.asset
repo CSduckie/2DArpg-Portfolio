@@ -27,10 +27,10 @@ MonoBehaviour:
     attackData:
       audioClip: {fileID: 0}
       hitData:
-        value: 20
+        value: 50
         SpawnObj: []
         energyCost: 1
-        stunValue: 0
+        stunValue: 10
         HardTime: 0
         RepelVelocity: {x: 4, y: 3}
         RepelTime: 0

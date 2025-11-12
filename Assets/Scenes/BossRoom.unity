@@ -3389,6 +3389,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347194844}
   m_CullTransparentMesh: 1
+--- !u!1 &351976749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 351976750}
+  m_Layer: 8
+  m_Name: VFXSpwanPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &351976750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351976749}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1494309479}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &353581388
 GameObject:
   m_ObjectHideFlags: 0
@@ -10708,10 +10739,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70aba28ac749c84b963f8aa580d51be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backGroundTrans: {fileID: 1944074631}
-  foreGroundTrans: {fileID: 380270041}
-  BGparalloxSpeed: -0.1
-  FGparalloxSpeed: 0
+  bg1: {fileID: 0}
+  bg2: {fileID: 0}
+  bg3: {fileID: 0}
+  bg4: {fileID: 0}
+  bg5: {fileID: 0}
+  bgPipe: {fileID: 0}
+  speedFor1: 0
+  speedFor2: 0
+  speedFor3: 0
+  speedFor4: 0
+  speedFor5: 0
+  speedForPipe: 0
   lastPos: {x: 0, y: 0}
 --- !u!114 &1148285685
 MonoBehaviour:
@@ -14017,6 +14056,7 @@ Transform:
   - {fileID: 1261652026}
   - {fileID: 781521482}
   - {fileID: 782795676}
+  - {fileID: 351976750}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1494309480
@@ -14035,6 +14075,7 @@ MonoBehaviour:
   enemyUI: {fileID: 1116610398}
   sprite: {fileID: 1748426076}
   rb: {fileID: 1494309482}
+  hitVFXSpwanPoint: {fileID: 351976750}
   groundCheck: {fileID: 1964456241}
   groundCheckDistance: 0.1
   wallCheck: {fileID: 1427233796}

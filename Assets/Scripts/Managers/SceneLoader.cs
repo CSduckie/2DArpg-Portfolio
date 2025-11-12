@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance { get; private set; }
-    
+    public GameManager gameManager;
     [SerializeField] private Animator sceneTransitionAnimator;
     
     private void Awake()
@@ -20,6 +20,7 @@ public class SceneLoader : MonoBehaviour
     private void Start()
     {
         sceneTransitionAnimator = GetComponentInChildren<Animator>();
+        gameManager = GetComponentInParent<GameManager>();
     }
     
     // 同步加载场景
@@ -48,6 +49,7 @@ public class SceneLoader : MonoBehaviour
         }
         
         sceneTransitionAnimator.SetTrigger("Start");
+        gameManager.FindPlayer();
     }
 
     // 重新加载当前场景

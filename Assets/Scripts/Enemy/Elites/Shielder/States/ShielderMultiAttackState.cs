@@ -4,6 +4,7 @@ public class ShielderMultiAttackState : ShielderStateBase
 {
     public override void Enter()
     {
+        //Debug.Log("进入multiAttack");
         shielder.PlayAnimation("MultiAttack",0f);
         shielder.isMultiAttack = true;
     }
@@ -13,7 +14,7 @@ public class ShielderMultiAttackState : ShielderStateBase
     {
         if (CheckAnimatorStateName("MultiAttack", out float animationTime))
         {
-            if (animationTime >= 1f)
+            if (animationTime >= 0.9f)
             {
                 shielder.ChangeState(ShielderState.Idle);
                 return;
@@ -29,6 +30,7 @@ public class ShielderMultiAttackState : ShielderStateBase
         shielder.CoolRangeAttack();
         shielder.isMultiAttack = false;
         shielder.shielderWeapons[3].SetActive(false);
+        //Debug.Log("退出multiAttack");
     }
     
 }

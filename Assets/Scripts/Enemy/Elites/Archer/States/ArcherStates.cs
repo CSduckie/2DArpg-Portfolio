@@ -10,4 +10,5 @@ public enum ArcherStates
     Dead,
     Chase,
     Stun,
+    Appear,
 }

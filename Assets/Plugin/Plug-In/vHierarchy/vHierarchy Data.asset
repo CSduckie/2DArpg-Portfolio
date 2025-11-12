@@ -78,6 +78,12 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-2017900678-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-96889774356380416-297170461
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-702724556-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1413302917-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1405330238-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1225996738-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-10029603-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-861212074-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-715846649-0
         values:
         - colorIndex: 1
           iconNameOrGuid: Folder Icon
@@ -92,7 +98,7 @@ MonoBehaviour:
           isIconRecursive: 0
           isColorRecursive: 0
         - colorIndex: 2
-          iconNameOrGuid: 
+          iconNameOrGuid: AvatarMask On Icon
           isIconRecursive: 0
           isColorRecursive: 0
         - colorIndex: 0
@@ -155,7 +161,7 @@ MonoBehaviour:
           iconNameOrGuid: Canvas Icon
           isIconRecursive: 0
           isColorRecursive: 0
-        - colorIndex: 0
+        - colorIndex: 1
           iconNameOrGuid: Canvas Icon
           isIconRecursive: 0
           isColorRecursive: 0
@@ -307,6 +313,30 @@ MonoBehaviour:
           iconNameOrGuid: Settings Icon
           isIconRecursive: 0
           isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: EventSystem Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: RawImage Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: RawImage Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: EventSystem Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-164635654-0
@@ -370,6 +400,28 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-636081623-0
         - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1831339189-0
         - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-350030947-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1213463628-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-2003141326-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1596278020-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1565854466-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1820447214-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-816013367-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-335652114-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1159493247-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-873302129-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1246048014-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1560926215-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-721222481-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-561699646-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1588266749-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-833234805-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1820275066011636168-1112109249314088447
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-7691885357378737901-1112109249314088447
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-3421586915034547445-1112109249314088447
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1824957610105362742-1112109249314088447
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-9174987893140698777-1112109249314088447
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-1358962491-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d24b096ecdd743149a324c94a196383c-96889774356380416-4066718524487896243
         values:
         - colorIndex: 1
           iconNameOrGuid: Folder Icon
@@ -615,6 +667,94 @@ MonoBehaviour:
           iconNameOrGuid: Transform Icon
           isIconRecursive: 0
           isColorRecursive: 0
+        - colorIndex: 8
+          iconNameOrGuid: RawImage Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 6
+          iconNameOrGuid: Shader Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: StandaloneInputModule Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: RawImage Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Light Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: SpriteRenderer Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-164635654-0
@@ -692,6 +832,11 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1841207655-0
         - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1304118052-0
         - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1146646219-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-351976749-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1748426073-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1964456240-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1427233795-0
+        - globalObjectIdString: GlobalObjectId_V1-2-186795fe4a090ce488da2cea096c191e-1261652025-0
         values:
         - colorIndex: 1
           iconNameOrGuid: Folder Icon
@@ -978,7 +1123,7 @@ MonoBehaviour:
           isIconRecursive: 0
           isColorRecursive: 0
         - colorIndex: 0
-          iconNameOrGuid: PreMatQuad
+          iconNameOrGuid: BoxCollider Icon
           isIconRecursive: 0
           isColorRecursive: 0
         - colorIndex: 0
@@ -991,6 +1136,26 @@ MonoBehaviour:
           isColorRecursive: 0
         - colorIndex: 0
           iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: SpriteRenderer Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Transform Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: SpriteRenderer Icon
           isIconRecursive: 0
           isColorRecursive: 0
     - goDatas_byGlobalId:

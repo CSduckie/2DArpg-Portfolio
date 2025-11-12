@@ -16,7 +16,7 @@ public class PlayerWeapon : MonoBehaviour
     private Coroutine currentCoroutine;
     private void Start()
     {
-        player = GameManager.instance.player;
+        player = GetComponentInParent<PlayerController>();
         weaponDamage = skillConfig.releaseData.attackData.hitData.value;
         repelDir = skillConfig.releaseData.attackData.hitData.RepelVelocity;
         stunValue = skillConfig.releaseData.attackData.hitData.stunValue;

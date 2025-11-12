@@ -9,12 +9,14 @@ public class EnemyWeapon : MonoBehaviour
     private float weaponDamage;
     public float stunValue { get; private set; }
     private Vector2 repelDir;
+    public float impulseValue { get;private set; }
     private void Start()
     {
         enemy = GetComponentInParent<EnemyController>();
         weaponDamage = skillConfig.releaseData.attackData.hitData.value;
         repelDir = skillConfig.releaseData.attackData.hitData.RepelVelocity;
         stunValue = skillConfig.releaseData.attackData.hitData.stunValue;
+        impulseValue = skillConfig.releaseData.attackData.ScreenImpulseValue;
     }
     
     private void OnTriggerEnter2D(Collider2D other)

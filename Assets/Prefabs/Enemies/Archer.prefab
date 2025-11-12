@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &479252151714753032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5360312880872426333}
+  m_Layer: 0
+  m_Name: VFXspwanPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5360312880872426333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479252151714753032}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1307933854338977002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2539519517314021112
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,9 +181,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -388878853
+  m_SortingLayer: 4
+  m_SortingOrder: 10
   m_Sprite: {fileID: 7402079830906333199, guid: d97ec29908741e04d8a7611cf1b23f8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -200,6 +231,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 2093919797693599392}
   enemy: {fileID: 6354291815561119252}
+  sprite: {fileID: 0}
+  material: {fileID: 0}
 --- !u!1 &4819227012016369254
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +421,7 @@ Transform:
   - {fileID: 7216077620819611326}
   - {fileID: 7685721817600979984}
   - {fileID: 6628380070832930020}
+  - {fileID: 5360312880872426333}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6354291815561119252
@@ -402,9 +436,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb89eaddc1ee71840b676a00a77274e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitVFX: {fileID: 0}
   enemyUI: {fileID: 8416383745284881209}
   sprite: {fileID: 8230727323691741000}
   rb: {fileID: 5082071615281599315}
+  hitVFXSpwanPoint: {fileID: 5360312880872426333}
   groundCheck: {fileID: 7216077620819611326}
   groundCheckDistance: 0.1
   wallCheck: {fileID: 7216077620819611326}
@@ -891,7 +927,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2039
 --- !u!114 &1221999653072629168
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,10 +30,10 @@ MonoBehaviour:
         value: 10
         SpawnObj: []
         energyCost: 0
-        stunValue: 0
+        stunValue: 10
         HardTime: 0
-        RepelVelocity: {x: 0, y: 0}
+        RepelVelocity: {x: 1, y: 0}
         RepelTime: 0
-      ScreenImpulseValue: 0
+      ScreenImpulseValue: 1
       FreezeFrameTime: 0
       FreezeGameTime: 0
