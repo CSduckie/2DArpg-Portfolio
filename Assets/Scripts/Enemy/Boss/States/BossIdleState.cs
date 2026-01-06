@@ -14,6 +14,8 @@ public class BossIdleState : BossStateBase
 
     public override void Update()
     {
+        
+        
         //检查是否需要stun
         if (boss.willStun)
         {
@@ -77,33 +79,41 @@ public class BossIdleState : BossStateBase
                 return;
             }
         }
-        
- 
-        
-        
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            boss.ChangeState(BossStates.DroneAttack);
-            return;
-        }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (boss.canLaser)
         {
-            boss.ChangeState(BossStates.ArmSmashAttack);
-            return;
+            float skillChance = Random.value;
+            if (skillChance <= boss.laserSkillCD)
+            {
+                boss.ChangeState(BossStates.LaserAOESkill);
+                return;
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            boss.ChangeState(BossStates.ForceKillSkill);
-            return;
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            boss.ChangeState(BossStates.BombAttackSkill);
-            return;
-        }
+        
+        
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     boss.ChangeState(BossStates.DroneAttack);
+        //     return;
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.L))
+        // {
+        //     boss.ChangeState(BossStates.ArmSmashAttack);
+        //     return;
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.K))
+        // {
+        //     boss.ChangeState(BossStates.ForceKillSkill);
+        //     return;
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.B))
+        // {
+        //     boss.ChangeState(BossStates.BombAttackSkill);
+        //     return;
+        // }
     }
 
     public override void FixedUpdate()

@@ -536,6 +536,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1932807621969390404}
   enemy: {fileID: 7416604743786566316}
+  sprite: {fileID: 0}
+  material: {fileID: 0}
 --- !u!1 &7788329463325258626
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +742,7 @@ MonoBehaviour:
   enemyUI: {fileID: 1546908092246133953}
   sprite: {fileID: 1471464925305884640}
   rb: {fileID: 8398487526818754677}
+  hitVFXSpwanPoint: {fileID: 0}
   groundCheck: {fileID: 9072086056191816864}
   groundCheckDistance: 0
   wallCheck: {fileID: 9072086056191816864}

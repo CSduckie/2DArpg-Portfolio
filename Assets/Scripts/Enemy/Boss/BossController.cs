@@ -59,6 +59,14 @@ public class BossController : EnemyController
     public bool canSmash;
     public GameObject smashHitBox;
     
+	[Header("激光技能")]
+    [Range(0,1)] public float laserSkillChance;
+	public LaserControl laser;
+    public float rotateSpeed;
+    [SerializeField] private GameObject effectPrefab; // 特效预制体进来
+    public float laserSkillCD;
+    public bool canLaser;
+    
     protected override void Start()
     {
         base.Start();
@@ -97,10 +105,13 @@ public class BossController : EnemyController
             case BossStates.Die:
                 stateMachine.ChangeState<BossDieState>();
                 break;
+            case BossStates.LaserAOESkill:
+                stateMachine.ChangeState<BossLaserAOESkillState>();
+                break;
         }
     }
 
-    #region 无人机生成技能携程
+    #region 无人机生成技能
     public void SpwanDrone()
     {
         droneNum = 4;
@@ -120,7 +131,7 @@ public class BossController : EnemyController
     }
     #endregion
     
-    #region 机械爪技能携程
+    #region 机械爪技能
     public void SpwanClaws()
     {
         spwanCompleted = false;
@@ -162,7 +173,7 @@ public class BossController : EnemyController
     }
     #endregion
     
-    #region 强杀技能携程和逻辑
+    #region 强杀技能和逻辑
 
     public void SpwanEnemies()
     {
@@ -174,34 +185,56 @@ public class BossController : EnemyController
     }
     
     
-    //TODO:需要优化
     public void enableRandomSparks()
     {
         int index = Random.Range(0, sparkVFX.Length);
         if (index == 0 || index == 2)
         {
             float yAxis = Random.Range(1.5f, 9f);
-            VFXManager.Instance.SpawnVFX(sparkVFX[index],new Vector2(sparkVFX[index].transform.position.x,yAxis),sparkVFX[index].transform.rotation.eulerAngles,3f);
+            VFXManager.Instance.SpawnVFX(sparkVFX[index],new Vector2(sparkVFX[index].transform.position.x,yAxis),sparkVFX[index].transform.rotation.eulerAngles,new Vector3(1,1,1),3f);
         }
         else
         {
             float xAxis = Random.Range(-6f, 11.5f);
-            VFXManager.Instance.SpawnVFX(sparkVFX[index],new Vector2(xAxis,sparkVFX[index].transform.position.y),sparkVFX[index].transform.rotation.eulerAngles,3f);
+            VFXManager.Instance.SpawnVFX(sparkVFX[index],new Vector2(xAxis,sparkVFX[index].transform.position.y),sparkVFX[index].transform.rotation.eulerAngles,new Vector3(1,1,1),3f);
         }
     }
     
     #endregion
     
-    #region 炸弹投放技能携程
+    #region 炸弹技能
 
     public void SpwanBombs()
     {
         Instantiate(bombPrefab,bombSpwanTrans.position,Quaternion.identity);
     }
-    
     #endregion
 
-    #region 技能携程冷却
+    #region 激光技能
+
+    public void StartSpwanEffectCoroutine()
+    {
+        StartCoroutine(SpawnEffects());
+    }
+    
+    private IEnumerator SpawnEffects()
+    {
+        float x = -8.5f;
+        float y = -0.5f;
+
+        while (x <= 15.5f + 0.001f) // 加一点点容错
+        {
+            Instantiate(effectPrefab, new Vector3(x, y, 0f), Quaternion.identity);
+            x += 2.5f;
+
+            if (x <= 15.5f)
+                yield return new WaitForSeconds(0.1f);
+        }
+    }
+    #endregion
+    
+
+    #region 技能冷却
 
     public void CoolSmashSkill()
     {
@@ -245,6 +278,17 @@ public class BossController : EnemyController
     {
         yield return new WaitForSeconds(bombSkillCD);
         canBomb = true;
+    }
+
+    public void CoolLaserSkill()
+    {
+        StartCoroutine(coolLaserCoroutine());
+    }
+
+    private IEnumerator coolLaserCoroutine()
+    {
+        yield return new WaitForSeconds(laserSkillCD);
+        canLaser = true;
     }
     #endregion
 

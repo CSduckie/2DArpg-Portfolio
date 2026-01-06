@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public interface IStateMachineOwner{}
 public class StateMachine
 {
@@ -25,10 +24,7 @@ public class StateMachine
         this.owner = owner;
     }
     
-    
-    
     //用于检测玩家是否要修改状态
-
     /// <summary>
     ///切换状态 
     /// </summary>
@@ -61,7 +57,6 @@ public class StateMachine
     private StateBase GetState<T>() where T:StateBase,new()
     {
         Type type = typeof(T);
-        //缓存字典中如果不存在，则人为创建添加
         if(!stateDic.TryGetValue(typeof(T),out StateBase state))
         {
             state = new T();
@@ -73,7 +68,7 @@ public class StateMachine
     }
     
     /// <summary>
-    /// 停止工作释放资源
+    /// 释放资源
     /// </summary>
     public void Stop()
     {

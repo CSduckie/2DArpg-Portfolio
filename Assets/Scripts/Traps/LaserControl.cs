@@ -83,7 +83,6 @@ public class LaserControl : MonoBehaviour
         
         float length = maxLength;
         float laserEndRotation = 180;
-
         
         if(hit)
         {

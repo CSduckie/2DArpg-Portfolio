@@ -36,7 +36,6 @@ public class BossBombController : MonoBehaviour
             {
                 exploded = true;
                 anim.SetTrigger("Explode");
-                //TODO:启动攻击盒子
             }
         } 
     }

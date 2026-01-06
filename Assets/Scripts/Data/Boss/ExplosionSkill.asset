@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5dd8ceb4fb4b84fa54a26b78d1c817, type: 3}
+  m_Name: ExplosionSkill
+  m_EditorClassIdentifier: 
+  AnimationName: 
+  EndAnimationName: 
+  releaseData:
+    SpawnObj:
+      prefab: {fileID: 0}
+      audioClip: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+      Scale: {x: 1, y: 1, z: 1}
+      Time: 0
+    audioClip: {fileID: 0}
+    canRotate: 0
+    attackData:
+      audioClip: {fileID: 0}
+      hitData:
+        value: 10
+        SpawnObj: []
+        energyCost: 0
+        stunValue: 0
+        HardTime: 0
+        RepelVelocity: {x: 1, y: 0}
+        RepelTime: 0
+      ScreenImpulseValue: 0.2
+      FreezeFrameTime: 0
+      FreezeGameTime: 0

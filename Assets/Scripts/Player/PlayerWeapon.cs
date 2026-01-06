@@ -62,14 +62,13 @@ public class PlayerWeapon : MonoBehaviour
         //通知特效器生成所有武器特效
         foreach (var vfx in hitVFX)
         {
-            VFXManager.Instance.SpawnVFX(vfx,vfxSpwanPos,rot.eulerAngles,1.2f);
+            VFXManager.Instance.SpawnVFX(vfx,vfxSpwanPos,rot.eulerAngles,new Vector3(1,1,1),1.2f);
         }
         //通知特效生成器生成敌人被打的特效
-        VFXManager.Instance.SpawnVFX(enemy.GetComponent<EnemyController>().hitVFX,vfxSpwanPos,rot.eulerAngles,1.2f);
+        VFXManager.Instance.SpawnVFX(enemy.GetComponent<EnemyController>().hitVFX,vfxSpwanPos,rot.eulerAngles,new Vector3(1,1,1),1.2f);
         
         CharacterStats _attackerStats = GetComponentInParent<CharacterStats>();
-            
-            
+
         //TODO:后续需要添加damage的修改值
         enemy.GetComponent<CharacterStats>().TakeDamage(weaponDamage ,stunValue, attackDir,repelDir,_attackerStats);
     }

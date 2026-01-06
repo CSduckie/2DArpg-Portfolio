@@ -21,7 +21,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
       Scale: {x: 1, y: 1, z: 1}
-      Time: 0
+      Time: 1.2
     audioClip: {fileID: 0}
     canRotate: 0
     attackData:

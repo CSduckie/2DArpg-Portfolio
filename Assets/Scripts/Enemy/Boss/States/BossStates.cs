@@ -9,6 +9,7 @@ public enum BossStates
     ArmSmashAttack,
     ForceKillSkill,
     BombAttackSkill,
+    LaserAOESkill,
     Stun,
     Die
 }

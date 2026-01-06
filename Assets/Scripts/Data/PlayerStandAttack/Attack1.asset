@@ -16,10 +16,10 @@ MonoBehaviour:
   EndAnimationName: Attack1End
   releaseData:
     SpawnObj:
-      prefab: {fileID: 0}
+      prefab: {fileID: 5424606574415925441, guid: 5747dc98406759e4ab515bea5b6572d6, type: 3}
       audioClip: {fileID: 0}
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0}
+      position: {x: 1, y: 0, z: 0}
+      rotation: {x: 180, y: 0, z: 100}
       Scale: {x: 1, y: 1, z: 1}
       Time: 1
     audioClip: {fileID: 0}

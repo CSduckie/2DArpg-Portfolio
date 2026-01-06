@@ -376,12 +376,11 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     
     
     #region 使用携程来判定玩家的完美防御,以及完美防御的触发函数
-    //TODO:增加效果
     public void TriggerPerfectDefend()
     {
         Debug.Log("完美防御触发!");
-        VFXManager.Instance.SpawnVFX(perfectDefendVFX,defendVFXTrans.position,new Vector3(0,0,0),1f);
-        VFXManager.Instance.SpawnVFX(defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].prefab,defendVFXTrans.position,new Vector3(0,0,0),defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].Time);
+        VFXManager.Instance.SpawnVFX(perfectDefendVFX,defendVFXTrans.position,new Vector3(0,0,0),new Vector3(1,1,1),1f);
+        VFXManager.Instance.SpawnVFX(defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].prefab,defendVFXTrans.position,new Vector3(0,0,0),new Vector3(1,1,1),defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].Time);
         impulseSource.GenerateImpulse(defendSkillConfig.releaseData.attackData.ScreenImpulseValue);
         //通知防御状态逻辑
         PlayerDefendState defenseState =  (PlayerDefendState)stateMachine.CurrentState;
@@ -393,8 +392,8 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     public void TriggerNormalDefend()
     {
         Debug.Log("普通防御触发!");
-        VFXManager.Instance.SpawnVFX(normaldefendVFX,defendVFXTrans.position,new Vector3(0,0,0),1f);
-        VFXManager.Instance.SpawnVFX(defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].prefab,defendVFXTrans.position,new Vector3(0,0,0),defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].Time);
+        VFXManager.Instance.SpawnVFX(normaldefendVFX,defendVFXTrans.position,new Vector3(0,0,0),new Vector3(1,1,1),1f);
+        VFXManager.Instance.SpawnVFX(defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].prefab,defendVFXTrans.position,new Vector3(0,0,0),new Vector3(1,1,1),defendSkillConfig.releaseData.attackData.hitData.SpawnObj[0].Time);
         impulseSource.GenerateImpulse(defendSkillConfig.releaseData.attackData.ScreenImpulseValue);
         //通知防御状态逻辑
         PlayerDefendState defenseState =  (PlayerDefendState)stateMachine.CurrentState;
@@ -417,12 +416,10 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     #endregion
 
     #region 大招逻辑
-
     //大招
     public void UseUlt()
     {
         FadeIn();
-        //根据段数，生成刃，然后刃上挂一个playerweapon,一段一个伤害
         StartCoroutine(UseUltSkill());
     }
 
@@ -437,15 +434,13 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
             Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
             // 2. 转换为世界坐标
             Vector3 worldCenter = Camera.main.ScreenToWorldPoint(screenCenter);
-            // 注意：2D 场景里通常要把 z 改成 0（避免相机 near/far clipping 影响）
             worldCenter.z = 0f;
-            
             
             // 生成一次斩击（这里用之前的单例 VFXManager 的 SpawnVFX）
             if (VFXManager.Instance != null)
             {
                 //生成基础切击特效
-                VFXManager.Instance.SpawnVFX(ultSkillConfig.releaseData.SpawnObj.prefab, worldCenter, rot.eulerAngles, 1.2f);
+                VFXManager.Instance.SpawnVFX(ultSkillConfig.releaseData.SpawnObj.prefab, worldCenter, rot.eulerAngles, new Vector3(1,1,1), 1.2f);
                 var index = UnityEngine.Random.Range(0, ultSkillConfig.releaseData.attackData.hitData.SpawnObj.Length);
                 
                 //生成附加斩击特效
@@ -455,7 +450,7 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
                 float randomAxisZ = UnityEngine.Random.Range(-180f, 180f);
                 Quaternion rotation = Quaternion.Euler(randomAxisX, randomAxisY, randomAxisZ);
 
-                VFXManager.Instance.SpawnVFX(ultSkillConfig.releaseData.attackData.hitData.SpawnObj[index].prefab, worldCenter, rotation.eulerAngles, 1.2f);
+                VFXManager.Instance.SpawnVFX(ultSkillConfig.releaseData.attackData.hitData.SpawnObj[index].prefab, worldCenter, rotation.eulerAngles, new Vector3(1,1,1), 1.2f);
 
                 impulseSource.GenerateImpulse(ultSkillConfig.releaseData.attackData.ScreenImpulseValue);
                 
