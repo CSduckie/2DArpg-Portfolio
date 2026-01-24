@@ -6,6 +6,7 @@ public class AssassinDieState : AssassinStateBase
     {
         assassin.PlayAnimation("Die",0f);
         assassin.isDead = true;
+        assassin.assassinWeapon.SetActive(false);
     }
     public override void Update()
     {

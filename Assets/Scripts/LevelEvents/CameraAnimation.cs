@@ -15,7 +15,7 @@ public class EnemyFight : MonoBehaviour
     private bool hasTriggeredWave2;
     private bool sceneTransitionTriggered = false;
     public GameObject airWall;
-    
+    public DialogueManager dialogueManager;
     private void Update()
     {
         // 检查第一波是否全部死亡
@@ -39,6 +39,7 @@ public class EnemyFight : MonoBehaviour
                     airWall.SetActive(false);
                     eliteFightCamera.Priority = 10;
                     normalFollowCamera.Priority = 20;
+                    FindObjectOfType<DialogueManager>().StartDialogue(1);
                 }
             }
         }

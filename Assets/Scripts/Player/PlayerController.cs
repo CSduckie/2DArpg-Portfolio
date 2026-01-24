@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
         ChangeState(PlayerState.Idle);
         cameraFollow = cameraFollowPoint.GetComponent<CameraFollow>();
         impulseSource = FindFirstObjectByType<CinemachineImpulseSource>();
-        canReciveInput = true;
+        
     }
 
     //状态机
@@ -240,17 +240,18 @@ public class PlayerController : MonoBehaviour, IStateMachineOwner
     
     public void Update()
     {
-        if(!canReciveInput) return;
         
+        if(!canReciveInput) return;
+
         if(!(isHurt || isDead || isStun || isDefending || isWallJumping || isUsingSkill || isResting))
             Flip();
-        
+
         currentSpeed = rb.linearVelocityX;
         //获取操作
         inputDir = Input.GetAxisRaw("Horizontal");
 
         FallSpeedLimit();
-        
+
         CheckForDefendInput();
     }
 
